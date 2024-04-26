@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\IndexController;
@@ -14,3 +15,9 @@ Route::get('watch', [IndexController::class, 'watch'])->name('watch');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('category', CategoryController::class);
+Route::resource('country', CategoryController::class);
+Route::resource('episode', CategoryController::class);
+Route::resource('movie', CategoryController::class);
+Route::resource('geren', CategoryController::class);
