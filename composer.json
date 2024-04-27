@@ -54,13 +54,6 @@
     "extra": {
         "laravel": {
             "dont-discover": []
-        },
-        "providers": [
-            "Collective\\Html\\HtmlServiceProvider"
-        ],
-        "aliases": {
-            "Form": "Collective\\Html\\FormFacade",
-            "Html": "Collective\\Html\\HtmlFacade"
         }
     },
     "config": {
