@@ -10,11 +10,11 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MovieController;
 
 Route::get('/', [IndexController::class, 'home'])->name('homepage');
-Route::get('/category', [IndexController::class, 'category'])->name('category');
-Route::get('country', [IndexController::class, 'country'])->name('country');
-Route::get('episode', [IndexController::class, 'episode'])->name('episode');
-Route::get('movie', [IndexController::class, 'movie'])->name('movie');
-Route::get('watch', [IndexController::class, 'watch'])->name('watch');
+Route::get('/danh-muc/{slug}', [IndexController::class, 'category'])->name('category');
+Route::get('quoc-gia/{slug}', [IndexController::class, 'country'])->name('country');
+Route::get('the-loai/{slug}', [IndexController::class, 'episode'])->name('episode');
+Route::get('phim', [IndexController::class, 'movie'])->name('movie');
+Route::get('xem-phin', [IndexController::class, 'watch'])->name('watch');
 
 Auth::routes();
 

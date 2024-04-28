@@ -12,7 +12,6 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -34,6 +33,8 @@ class CountryController extends Controller
         $Country->title = $data['title'];
         $Country->description = $data['description'];
         $Country->status = $data['status'];
+        $Country->slug = $data['slug'];
+
         $Country->save();
         return redirect()->back();
     }
@@ -51,9 +52,9 @@ class CountryController extends Controller
      */
     public function edit(string $id)
     {
-        $categories = Country::find($id);
+        $Countries = Country::find($id);
         $list = Country::all();
-        return view('admin.Country.form', compact('list', 'categories'));
+        return view('admin.Country.form', compact('list', 'countries'));
     }
 
     /**
@@ -66,6 +67,7 @@ class CountryController extends Controller
         $Country->title = $data['title'];
         $Country->description = $data['description'];
         $Country->status = $data['status'];
+        $Country->slug = $data['slug'];
         $Country->update();
         return redirect()->back();
     }

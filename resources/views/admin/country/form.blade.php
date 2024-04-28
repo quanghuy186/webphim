@@ -25,6 +25,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="title" class="form-lable">Slug</label>
+                            <input value="{{ isset($categories) ? $categories->slug : '' }}" class="form-control" type="text" name="slug" id="" placeholder="Nhập dữ liệu">
+                        </div>
+                        
+                        <div class="form-group">
                             <label for="description" class="form-label">Mô tả</label>
                             <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="Nhập mô tả">{{ isset($countries) ? $countries->description : '' }}</textarea>
                         </div>

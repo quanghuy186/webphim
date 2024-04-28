@@ -12,7 +12,6 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -34,6 +33,8 @@ class GenreController extends Controller
         $genre->title = $data['title'];
         $genre->description = $data['description'];
         $genre->status = $data['status'];
+        $genre->slug = $data['slug'];
+
         $genre->save();
         return redirect()->back();
     }
@@ -51,9 +52,9 @@ class GenreController extends Controller
      */
     public function edit(string $id)
     {
-        $categories = Genre::find($id);
+        $genres = Genre::find($id);
         $list = Genre::all();
-        return view('admin.genre.form', compact('list', 'categories'));
+        return view('admin.genre.form', compact('list', 'genres'));
     }
 
     /**
@@ -66,6 +67,7 @@ class GenreController extends Controller
         $genre->title = $data['title'];
         $genre->description = $data['description'];
         $genre->status = $data['status'];
+        $genre->slug = $data['slug'];
         $genre->update();
         return redirect()->back();
     }

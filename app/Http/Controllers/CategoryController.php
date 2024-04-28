@@ -12,7 +12,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -34,6 +33,7 @@ class CategoryController extends Controller
         $category->title = $data['title'];
         $category->description = $data['description'];
         $category->status = $data['status'];
+        $category->slug = $data['slug'];
         $category->save();
         return redirect()->back();
     }
@@ -66,6 +66,7 @@ class CategoryController extends Controller
         $category->title = $data['title'];
         $category->description = $data['description'];
         $category->status = $data['status'];
+        $category->slug = $data['slug'];
         $category->update();
         return redirect()->back();
     }
