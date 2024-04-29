@@ -10,22 +10,34 @@ use Illuminate\Http\Request;
 class IndexController extends Controller
 {
     public function home(){
-        $categories = Category::orderBy('id', 'desc')->get();
+        $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
         return view('pages.home', compact('categories', 'genres', 'countries'));
     }
 
-    public function category(){
-        return view('pages.category');
+    public function category($slug){
+        $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
+        $genres = Genre::orderBy('id', 'desc')->get();
+        $countries = Country::orderBy('id', 'desc')->get();
+        $cate_slug = Category::where('slug', $slug)->first(); 
+        return view('pages.category', compact('categories', 'genres', 'countries', 'cate_slug'));
     }  
 
-    public function genre(){
-        return view('pages.genre');
+    public function genre($slug){
+        $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
+        $genres = Genre::orderBy('id', 'desc')->get();
+        $countries = Country::orderBy('id', 'desc')->get();
+        $genre_slug = Genre::where('slug', $slug)->first(); 
+        return view('pages.genre', compact('categories', 'genres', 'countries', 'genre_slug'));
     } 
     
-    public function country(){
-        return view('pages.country');
+    public function country($slug){
+        $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
+        $genres = Genre::orderBy('id', 'desc')->get();
+        $countries = Country::orderBy('id', 'desc')->get();
+        $country_slug = Country::where('slug', $slug)->first(); 
+        return view('pages.country', compact('categories', 'genres', 'countries', 'country_slug'));
     }
 
     public function episode(){

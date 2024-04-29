@@ -21,12 +21,12 @@
                         @csrf
                         <div class="form-group">
                             <label for="title" class="form-lable">Tiêu đề</label>
-                            <input value="{{ isset($categories) ? $categories->title : '' }}" class="form-control" type="text" name="title" id="" placeholder="Nhập tiêu đề">
+                            <input onkeyup="ChangeToSlug()" value="{{ isset($categories) ? $categories->title : '' }}" class="form-control" type="text" name="title" id="slug" placeholder="Nhập tiêu đề">
                         </div>
 
                         <div class="form-group">
                             <label for="title" class="form-lable">Slug</label>
-                            <input value="{{ isset($categories) ? $categories->slug : '' }}" class="form-control" type="text" name="slug" id="" placeholder="Nhập dữ liệu">
+                            <input value="{{ isset($categories) ? $categories->slug : '' }}" class="form-control" type="text" name="slug" id="convert_slug" placeholder="Nhập dữ liệu">
                         </div>
 
                         <div class="form-group">
@@ -67,6 +67,7 @@
                   <tr>
                     <th scope="col">Tiêu đề</th>
                     <th scope="col">Mô tả</th>
+                    <th scope="col">Slug</th>
                     <th scope="col">Trạng thái</th>
                     <th scope="col">Thực hiện</th>
                   </tr>
@@ -76,6 +77,7 @@
                         <tr>
                             <th scope="row">{{ $category->title }}</th>
                             <td>{{ $category->description }}</td>
+                            <td>{{ $category->slug }}</td>
                             @if ($category->status === 1)
                                 <td>Hiển thị</td>
                             @else

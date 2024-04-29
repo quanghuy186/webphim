@@ -52,7 +52,7 @@ class CountryController extends Controller
      */
     public function edit(string $id)
     {
-        $Countries = Country::find($id);
+        $countries = Country::find($id);
         $list = Country::all();
         return view('admin.Country.form', compact('list', 'countries'));
     }

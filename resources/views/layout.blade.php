@@ -24,13 +24,15 @@
       <meta property="og:image:width" content="300" />
       <meta property="og:image:height" content="55" />
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-     
+      {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+      {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
       <link rel='dns-prefetch' href='//s.w.org' />
       
-      <link rel='stylesheet' id='bootstrap-css' href='{{ asset('css/bootstrap.min.css?ver=5.7.2') }}' media='all' />
-      <link rel='stylesheet' id='style-css' href=' {{ asset('css/style.css?ver=5.7.2') }}' media='all' />
-      <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('css/style.min.css?ver=5.7.2') }}' media='all' />
+      <link rel='stylesheet' id='bootstrap-css' href='{{ asset('css/bootstrap.min.css') }}' media='all' />
+      <link rel='stylesheet' id='style-css' href=' {{ asset('css/style.css') }}' media='all' />
+      <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('css/style.min.css') }}' media='all' />
       <script type='text/javascript' src='{{ asset('js/jquery.min.js') }}' id='halim-jquery-js'></script>
+      <script src="{{ asset('js/bootstrap.min.js') }}"></script>
       <style type="text/css" id="wp-custom-css">
          .textwidget p a img {
          width: 100%;
@@ -95,30 +97,26 @@
                   <div class="menu-menu_1-container">
                      <ul id="menu-menu_1" class="nav navbar-nav navbar-left">
                         <li class="current-menu-item active"><a title="Trang Chủ" href="{{ route('homepage') }}">Trang Chủ</a></li>
-                        @foreach ($categories as $category)
-                           <li class="mega"><a title="Phim Mới" href="{{ route('category.index') }}">{{ $category->title }}</a></li>
-                        @endforeach
                         <li class="mega dropdown">
-                        </li>
-                        <li class="mega dropdown">
-                           <a title="Thể Loại" href="{{ route('episode.index') }}" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thể Loại <span class="caret"></span></a>
+                           <a title="Thể loại" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thể loại<span class="caret"></span></a>
                            <ul role="menu" class=" dropdown-menu">
                               @foreach ($genres as $genre)
-                                  <li><a title="Tâm Lý" href="{{ route('episode.index') }}">{{ $genre->title }}</a></li>
+                                  <li><a title="{{ $genre->title }}" href="{{ route('genre', $genre->slug) }}">{{ $genre->title }}</a></li>
                               @endforeach
                            </ul>
                         </li>
+                        @foreach ($categories as $category)
+                           <li class="mega"><a title="{{ $category->title }}" href="{{ route('category', $category->slug) }}">{{ $category->title }}</a></li>
+                        @endforeach
+
                         <li class="mega dropdown">
-                           <a title="Quốc Gia" href="{{ route('country') }}" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Quốc Gia <span class="caret"></span></a>
+                           <a title="Quốc Gia" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Quốc Gia <span class="caret"></span></a>
                            <ul role="menu" class=" dropdown-menu">
                               @foreach ($countries as $country)
-                                  <li><a title="Việt nam" href="{{ route('country') }}">{{ $country->title }}</a></li>
+                                  <li><a title="Việt nam" href="{{ route('country', $country->slug) }}">{{ $country->title }}</a></li>
                               @endforeach
                            </ul>
                         </li>
-                        {{-- <li><a title="Phim Lẻ" href="danhmuc.php">Phim Lẻ</a></li>
-                        <li><a title="Phim Bộ" href="danhmuc.php">Phim Bộ</a></li>
-                        <li><a title="Phim Chiếu Rạp" href="danhmuc.php">Phim Chiếu Rạp</a></li> --}}
                      </ul>
                   </div>
                   <ul class="nav navbar-nav navbar-left" style="background:#000;">
