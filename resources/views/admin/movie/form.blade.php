@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card mt-3">
-                <div class="card-header">{{ __('Quản lý thể loại phim') }}</div>
+                <div class="card-header">{{ __('Quản lý phim') }}</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -12,33 +12,33 @@
                         </div>
                     @endif
 
-                    @if (isset($genres))
-                        <form action="{{ route('genre.update', $genres->id) }}" method="POST">
+                    @if (isset($movies))
+                        <form action="{{ route('movie.update', $movies->id) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                     @else
-                         <form action="{{ route('genre.store') }}" method="POST">
+                         <form action="{{ route('movie.store') }}" method="POST" enctype="multipart/form-data">
                     @endif
                         @csrf
                         <div class="form-group">
                             <label for="title" class="form-lable">Tiêu đề</label>
-                            <input onkeyup="ChangeToSlug()" value="{{ isset($genres) ? $genres->title : '' }}" class="form-control" type="text" name="title" id="slug" placeholder="Nhập tiêu đề">
+                            <input onkeyup="ChangeToSlug()" value="{{ isset($movies) ? $movies->title : '' }}" class="form-control" type="text" name="title" id="slug" placeholder="Nhập tiêu đề">
                         </div>
 
                         <div class="form-group">
                             <label for="title" class="form-lable">Slug</label>
-                            <input  value="{{ isset($genres) ? $genres->slug : '' }}" class="form-control" type="text" name="slug" id="convert_slug" placeholder="Nhập dữ liệu">
+                            <input  value="{{ isset($movies) ? $movies->slug : '' }}" class="form-control" type="text" name="slug" id="convert_slug" placeholder="Nhập dữ liệu">
                         </div>
                         
                         <div class="form-group">
                             <label for="description" class="form-label">Mô tả</label>
-                            <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="Nhập mô tả">{{ isset($genres) ? $genres->description : '' }}</textarea>
+                            <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="Nhập mô tả">{{ isset($movies) ? $movies->description : '' }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="status" class="form-lable">Trạng thái</label>
                             <select name="status" id="status" class="form-control">
-                                @if (isset($genres->status))
-                                    @if ($genres->status === 1)
+                                @if (isset($movies->status))
+                                    @if ($movies->status === 1)
                                         <option selected value="1">Hiển thị</option>
                                         <option value="0">Đang ẩn</option>
                                     @else
@@ -51,7 +51,45 @@
                                 @endif
                             </select>
                         </div>
-                        @if (isset($genres))
+
+                        <div class="form-group">
+                            <label for="title" class="form-lable">Danh mục</label>
+                            <select name="category_id" id="category_id" class="form-control">
+                                @foreach ($categories as $cate)
+                                     <option value="{{ $cate->id }}">{{ $cate->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title" class="form-lable">Thể loại</label>
+                            <select name="genre_id" id="genre_id" class="form-control">
+                                @foreach ($genres as $genre)
+                                     <option value="{{ $genre->id }}">{{ $genre->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title" class="form-lable">Quốc gia</label>
+                            <select name="country_id" id="country_id" class="form-control">
+                                @foreach ($countries as $country)
+                                     <option value="{{ $country->id }}">{{ $country->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title" class="form-lable">Hình ảnh</label>
+                            <input type="file" name="image" class="form-control">
+
+                            @if(isset($movies))
+                                  <img style="width: 120px" src="{{ asset('uploads/movie/'.$movies->image) }}" alt="">
+                            @endif
+
+                        </div>
+
+                        @if (isset($movies))
                             <button class='btn btn-success' type="submit">Cập nhật</button>
                         @else
                             <button class='btn btn-success' type="submit">Thêm mới</button>
@@ -66,25 +104,36 @@
                 <thead>
                   <tr>
                     <th scope="col">Tiêu đề</th>
-                    <th scope="col">Mô tả</th>
                     <th scope="col">Slug</th>
+                    <th scope="col">Mô tả</th>
                     <th scope="col">Trạng thái</th>
+                    <th scope="col">Danh mục</th>
+                    <th scope="col">Thể loại</th>
+                    <th scope="col">Quốc gia</th>
+                    <th scope="col">Hình ảnh</th>
                     <th scope="col">Thực hiện</th>
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($list as $genre)
+                    @foreach ($list as $movie)
                         <tr>
-                            <th scope="row">{{ $genre->title }}</th>
-                            <td>{{ $genre->description }}</td>
-                            <td>{{ $genre->slug }}</td>
-                            @if ($genre->status === 1)
+                            <th scope="row">{{ $movie->title }}</th>
+                            <td>{{ $movie->slug }}</td>
+                            <td>{{ $movie->description }}</td>
+                            @if ($movie->status === 1)
                                 <td>Hiển thị</td>
                             @else
                                 <td>Đang ẩn</td>
                             @endif
+                            {{-- <td> --}}
+                                <td>{{ $movie->category->title }}</td>
+                                <td>{{ $movie->genre->title }}</td>
+                                <td>{{ $movie->country->title }}</td>
+                                <td class="text-center">
+                                    <img class="img-fluid" style="width:100px" src="{{ asset('uploads/movie/'.$movie->image) }}" alt="loi"> 
+                                </td>
                             <td>
-                            <a class="btn btn-danger" href="{{ route('genre.edit', $genre->id) }}">Sửa</a>
+                            <a class="btn btn-danger" href="{{ route('movie.edit', $movie->id) }}">Sửa</a>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                 Xóa
                             </button>
@@ -102,7 +151,7 @@
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                        <form action="{{ route('genre.destroy', $genre->id) }}" method="POST">
+                                        <form action="{{ route('movie.destroy', $movie->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-secondary" type="submit">Xóa</button>
