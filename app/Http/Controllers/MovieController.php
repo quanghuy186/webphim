@@ -85,8 +85,8 @@ class MovieController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $movie = Movie::find($id);
         $data = $request->all();
+        $movie = Movie::find($id);
         $movie->title = $data['title'];
         $movie->description = $data['description'];
         $movie->status = $data['status'];
@@ -108,7 +108,7 @@ class MovieController extends Controller
             $movie->image = $new_image;
         }
 
-        $movie->update();
+        $movie->save();
         return redirect()->back();
     }
 

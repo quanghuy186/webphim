@@ -13,7 +13,8 @@ class IndexController extends Controller
         $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
-        return view('pages.home', compact('categories', 'genres', 'countries'));
+        $categories_home = Category::with('movie')->orderBy('id', 'desc')->where('status', 1)->get();
+        return view('pages.home', compact('categories', 'genres', 'countries', 'categories_home'));
     }
 
     public function category($slug){

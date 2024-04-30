@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="status" class="form-lable">Trạng thái</label>
+                            <label for="status" class="form-label">Trạng thái</label>
                             <select name="status" id="status" class="form-control">
                                 @if (isset($movies->status))
                                     @if ($movies->status === 1)
@@ -51,30 +51,30 @@
                                 @endif
                             </select>
                         </div>
-
+                        
                         <div class="form-group">
-                            <label for="title" class="form-lable">Danh mục</label>
+                            <label for="category_id" class="form-label">Danh mục</label>
                             <select name="category_id" id="category_id" class="form-control">
                                 @foreach ($categories as $cate)
-                                     <option value="{{ $cate->id }}">{{ $cate->title }}</option>
+                                    <option value="{{ $cate->id }}" @if (isset($movies) && $movies->category_id == $cate->id) selected @endif>{{ $cate->title }}</option>
                                 @endforeach
                             </select>
                         </div>
-
+                        
                         <div class="form-group">
-                            <label for="title" class="form-lable">Thể loại</label>
+                            <label for="genre_id" class="form-label">Thể loại</label>
                             <select name="genre_id" id="genre_id" class="form-control">
                                 @foreach ($genres as $genre)
-                                     <option value="{{ $genre->id }}">{{ $genre->title }}</option>
+                                    <option value="{{ $genre->id }}" @if(isset($movies) && $movies->genre_id == $genre->id) selected @endif>{{ $genre->title }}</option>
                                 @endforeach
                             </select>
                         </div>
-
+                        
                         <div class="form-group">
-                            <label for="title" class="form-lable">Quốc gia</label>
+                            <label for="country_id" class="form-label">Quốc gia</label>
                             <select name="country_id" id="country_id" class="form-control">
                                 @foreach ($countries as $country)
-                                     <option value="{{ $country->id }}">{{ $country->title }}</option>
+                                    <option value="{{ $country->id }}" @if (isset($movies) && $movies->country_id == $country->id) selected @endif>{{ $country->title }}</option>
                                 @endforeach
                             </select>
                         </div>
