@@ -63,7 +63,9 @@
         </div>
 
             <table class="table table-bordered mt-3">
+              
                 <thead>
+                    
                   <tr>
                     <th scope="col">Tiêu đề</th>
                     <th scope="col">Mô tả</th>
@@ -72,9 +74,9 @@
                     <th scope="col">Thực hiện</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="sortable">
                     @foreach ($list as $category)
-                        <tr>
+                        <tr  id="{{ $category->id }}">
                             <th scope="row">{{ $category->title }}</th>
                             <td>{{ $category->description }}</td>
                             <td>{{ $category->slug }}</td>

@@ -72,7 +72,7 @@
                     <th scope="col">Thực hiện</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="sortable">
                     @foreach ($list as $country)
                         <tr>
                             <th scope="row">{{ $country->title }}</th>

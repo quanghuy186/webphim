@@ -114,7 +114,7 @@
                     <th scope="col">Thực hiện</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="sortable">
                     @foreach ($list as $movie)
                         <tr>
                             <th scope="row">{{ $movie->title }}</th>
