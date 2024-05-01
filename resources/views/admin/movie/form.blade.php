@@ -114,6 +114,8 @@
                     <th scope="col">Thực hiện</th>
                   </tr>
                 </thead>
+
+                
                 <tbody id="sortable">
                     @foreach ($list as $movie)
                         <tr>
