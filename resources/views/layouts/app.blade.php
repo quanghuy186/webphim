@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
 {{-- 
     <style>
@@ -103,7 +102,27 @@
             $( function() {
             $( "#sortable" ).sortable(
                 {
-                    placeholder: "ui-state-highlight"
+                    placeholder : 'ui-state-highlight',
+                    update : function(event, ui) {
+                        var array_id = [];
+                        $('#sortable tr').each(function(){
+                            array_id.push($(this).attr('id'));
+                        })
+                        // alert(array_id);
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url:"{{ route('resorting') }}",
+                            method:"POST",
+                            data:{array_id:array_id},
+                            success:function(data){
+                                alert(
+                                    "Sắp xếp thành công"
+                                );
+                            }
+                        })
+                    }
                 }
             );
             $( "#sortable" ).disableSelection();

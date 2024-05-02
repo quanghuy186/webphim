@@ -115,7 +115,7 @@
                   </tr>
                 </thead>
 
-                
+
                 <tbody id="sortable">
                     @foreach ($list as $movie)
                         <tr>
