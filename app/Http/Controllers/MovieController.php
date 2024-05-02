@@ -14,8 +14,8 @@ class MovieController extends Controller
      */
     public function index()
     {
-        
-        return view('pages.movie');
+        $list = Movie::with('category', 'genre', 'country')->orderBy('id', 'desc')->get();
+        return view('admin.movie.index', compact('list'));
     }
 
     /**
