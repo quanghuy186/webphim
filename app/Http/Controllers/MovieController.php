@@ -42,6 +42,7 @@ class MovieController extends Controller
         $movie->status = $data['status'];
         $movie->slug = $data['slug'];
         $movie->category_id = $data['category_id'];
+        $movie->movie_hot = $data['movie_hot'];
         $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
 
@@ -92,6 +93,7 @@ class MovieController extends Controller
         $movie->status = $data['status'];
         $movie->slug = $data['slug'];
         $movie->category_id = $data['category_id'];
+        $movie->movie_hot = $data['movie_hot'];
         $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
 

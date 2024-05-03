@@ -60,6 +60,24 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label for="movie_hot" class="form-label">Phim hot</label>
+                            <select name="movie_hot" id="movie_hot" class="form-control">
+                                @if (isset($movies->movie_hot))
+                                    @if ($movies->movie_hot === 1)
+                                        <option selected value="1">Phim hot</option>
+                                        <option value="0">Không</option>
+                                    @else
+                                        <option value="1">Phim hot</option>
+                                        <option selected value="0">Không</option>
+                                    @endif
+                                @else
+                                    <option value="1">Phim hot</option>
+                                    <option value="0">Không</option>
+                                @endif
+                            </select>
+                        </div>
                         
                         <div class="form-group">
                             <label for="genre_id" class="form-label">Thể loại</label>

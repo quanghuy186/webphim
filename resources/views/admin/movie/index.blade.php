@@ -10,9 +10,10 @@
                   <tr>
                     <th scope="col">Tiêu đề</th>
                     <th scope="col">Slug</th>
-                    <th scope="col">Mô tả</th>
+                    {{-- <th scope="col">Mô tả</th> --}}
                     <th scope="col">Trạng thái</th>
                     <th scope="col">Danh mục</th>
+                    <th scope="col">Phim hot</th>
                     <th scope="col">Thể loại</th>
                     <th scope="col">Quốc gia</th>
                     <th scope="col">Hình ảnh</th>
@@ -24,7 +25,7 @@
                         <tr>
                             <th scope="row">{{ $movie->title }}</th>
                             <td>{{ $movie->slug }}</td>
-                            <td>{{ $movie->description }}</td>
+                            {{-- <td>{{ $movie->description }}</td> --}}
                             @if ($movie->status === 1)
                                 <td>Hiển thị</td>
                             @else
@@ -32,6 +33,12 @@
                             @endif
                             {{-- <td> --}}
                                 <td>{{ $movie->category->title }}</td>
+                                @if ($movie->movie_hot == 1)
+                                    <td>Phim hot</td>
+                                @else
+                                     <td>Không hot</td>
+                                @endif
+                               
                                 <td>{{ $movie->genre->title }}</td>
                                 <td>{{ $movie->country->title }}</td>
                                 <td class="text-center">
