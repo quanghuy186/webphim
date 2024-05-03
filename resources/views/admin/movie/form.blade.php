@@ -25,7 +25,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title" class="form-lable">Slug</label>
+                            <label for="name_eng" class="form-lable">Tên tiếng anh</label>
+                            <input value="{{ isset($movies) ? $movies->name_eng : '' }}" class="form-control" type="text" name="name_eng" placeholder="Nhập tên tiếng anh">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="slug" class="form-lable">Slug</label>
                             <input  value="{{ isset($movies) ? $movies->slug : '' }}" class="form-control" type="text" name="slug" id="convert_slug" placeholder="Nhập dữ liệu">
                         </div>
                         
