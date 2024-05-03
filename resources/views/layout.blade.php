@@ -24,14 +24,14 @@
       <meta property="og:image:width" content="300" />
       <meta property="og:image:height" content="55" />
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-      {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
       <link rel='dns-prefetch' href='//s.w.org' />
       
       <link rel='stylesheet' id='bootstrap-css' href='{{ asset('css/bootstrap.min.css') }}' media='all' />
       <link rel='stylesheet' id='style-css' href=' {{ asset('css/style.css') }}' media='all' />
       <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('css/style.min.css') }}' media='all' />
-      <script type='text/javascript' src='{{ asset('js/jquery.min.js') }}' id='halim-jquery-js'></script>
+      {{-- <script type='text/javascript' src='{{ asset('js/jquery.min.js') }}' id='halim-jquery-js'></script> --}}
       <script src="{{ asset('js/bootstrap.min.js') }}"></script>
       <style type="text/css" id="wp-custom-css">
          .textwidget p a img {

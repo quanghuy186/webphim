@@ -45,7 +45,7 @@
                   @foreach ($movie_hot as $key => $hot)
                      <article class="thumb grid-item post-38498">
                         <div class="halim-item">
-                           <a class="halim-thumb" href="" title="{{ $hot->title }}">
+                           <a class="halim-thumb" href="{{ route('movie', $hot->slug) }}" title="{{ $hot->title }}">
                               <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'. $hot->image) }}"></figure>
                               <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
                               <div class="icon_overlay"></div>
@@ -59,7 +59,6 @@
                         </div>
                      </article>
                   @endforeach
-                   
                </div>
             </div>
 
@@ -67,7 +66,7 @@
                @foreach ($categories_home as $key => $category_home)
                   <section id="halim-advanced-widget-2">
                      <div class="section-heading">
-                        <a href="danhmuc.php" title="Phim Bộ">
+                        <a href="danhmuc.php" title="{{ $category_home->title }}">
                         <span class="h-text">{{ $category_home->title }}</span>
                         </a>
                      </div>
@@ -75,9 +74,9 @@
                         @foreach ($category_home->movie->take(12) as $mov)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                            <div class="halim-item">
-                              <a class="halim-thumb" href="chitiet.php">
+                              <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
                                  <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$mov->image) }}" alt="BẠN CÙNG PHÒNG CỦA TÔI LÀ GUMIHO" title="BẠN CÙNG PHÒNG CỦA TÔI LÀ GUMIHO"></figure>
-                                 <span class="status">TẬP 15</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                                 <span class="status">TẬP 14</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
                                  <div class="icon_overlay"></div>
                                  <div class="halim-post-title-box">
                                     <div class="halim-post-title ">
