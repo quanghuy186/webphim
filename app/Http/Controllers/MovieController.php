@@ -38,9 +38,10 @@ class MovieController extends Controller
         $movie = new Movie;
         $data = $request->all();
         $movie->title = $data['title'];
-        $movie->title = $data['name_eng'];
+        $movie->name_eng = $data['name_eng'];
         $movie->description = $data['description'];
         $movie->status = $data['status'];
+        $movie->resolution = $data['resolution'];
         $movie->slug = $data['slug'];
         $movie->category_id = $data['category_id'];
         $movie->movie_hot = $data['movie_hot'];
@@ -93,6 +94,7 @@ class MovieController extends Controller
         $movie->title = $data['name_eng'];
         $movie->description = $data['description'];
         $movie->status = $data['status'];
+        $movie->status = $data['resolution'];
         $movie->slug = $data['slug'];
         $movie->category_id = $data['category_id'];
         $movie->movie_hot = $data['movie_hot'];

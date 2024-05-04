@@ -40,6 +40,40 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="resolution" class="form-label">Độ phân giải</label>
+                            <select name="resolution" id="resolution" class="form-control">
+                                @if (isset($movies->resolution))
+                                    @if ($movies->resolution === 0)
+                                        <option selected value="0">HD</option>
+                                        <option value="1">SD</option>
+                                        <option value="2">HDCam</option>
+                                        <option value="3">FullHD</option>
+                                    @elseif($movies->resolution === 1)
+                                        <option value="0">HD</option>
+                                        <option selected value="1">SD</option>
+                                        <option value="2">HDCam</option>
+                                        <option value="3">FullHD</option>
+                                    @elseif($movies->resolution === 2)
+                                        <option value="0">HD</option>
+                                        <option value="1">SD</option>
+                                        <option selected value="2">HDCam</option>
+                                        <option value="3">FullHD</option>
+                                    @else
+                                        <option value="0">HD</option>
+                                        <option value="1">SD</option>
+                                        <option value="2">HDCam</option>
+                                        <option selected value="3">FullHD</option>
+                                    @endif
+                                @else
+                                    <option value="0">HD</option>
+                                    <option value="1">SD</option>
+                                    <option value="2">HDCam</option>
+                                    <option value="3">FullHD</option>
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="status" class="form-label">Trạng thái</label>
                             <select name="status" id="status" class="form-control">
                                 @if (isset($movies->status))

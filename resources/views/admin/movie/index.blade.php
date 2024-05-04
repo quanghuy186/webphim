@@ -12,6 +12,7 @@
                     <th scope="col">Slug</th>
                     {{-- <th scope="col">Mô tả</th> --}}
                     <th scope="col">Trạng thái</th>
+                    <th scope="col">Độ phân giải</th>
                     <th scope="col">Danh mục</th>
                     <th scope="col">Phim hot</th>
                     <th scope="col">Thể loại</th>
@@ -25,14 +26,24 @@
                         <tr>
                             <th scope="row">{{ $movie->title }}</th>
                             <td>{{ $movie->slug }}</td>
-                            {{-- <td>{{ $movie->description }}</td> --}}
+                            {{-- {{Trạng thái}} --}}
                             @if ($movie->status === 1)
                                 <td>Hiển thị</td>
                             @else
                                 <td>Đang ẩn</td>
                             @endif
-                            {{-- <td> --}}
-                                <td>{{ $movie->category->title }}</td>
+                            {{-- Độ phân giải --}}
+                            @if ($movie->resolution == 0)
+                                 <td>HD</td>
+                            @elseif($movie->resolution == 1)
+                                <td>SD</td>
+                            @elseif($movie->resolution == 2)
+                                <td>SDCam</td>
+                            @else
+                                <td>Full HD</td>
+                            @endif
+                            {{-- phim hot --}}
+                            <td>{{ $movie->category->title }}</td>
                                 @if ($movie->movie_hot == 1)
                                     <td>Phim hot</td>
                                 @else

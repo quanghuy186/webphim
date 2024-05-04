@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -55,7 +56,8 @@ class IndexController extends Controller
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
         $movie = Movie::with('category', 'genre', 'country')->where('slug', $slug)->where('status', 1)->first();
-        return view('pages.movie', compact('genres', 'countries', 'categories', 'movie'));
+        $movie_related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug', [$slug])->get();
+        return view('pages.movie', compact('genres', 'countries', 'categories', 'movie', 'movie_related'));
     }
 
     public function watch(){

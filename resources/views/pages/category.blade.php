@@ -27,7 +27,17 @@
                <div class="halim-item">
                   <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
                      <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$mov->image) }}" alt="BẠN CÙNG PHÒNG CỦA TÔI LÀ GUMIHO" title="BẠN CÙNG PHÒNG CỦA TÔI LÀ GUMIHO"></figure>
-                     <span class="status">TẬP 15</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                     <span class="status">
+                        @if ($mov->resolution == 0)
+                           <td>HD</td>
+                        @elseif($mov->resolution == 1)
+                           <td>SD</td>
+                        @elseif($mov->resolution == 2)
+                           <td>SDCam</td>
+                        @else
+                           <td>Full HD</td>
+                        @endif              
+                     </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
                      <div class="icon_overlay"></div>
                      <div class="halim-post-title-box">
                         <div class="halim-post-title ">
