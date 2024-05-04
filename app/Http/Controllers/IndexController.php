@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends Controller
 {
     public function home(){
-        $movie_hot = Movie::where('movie_hot', 1)->where('status', 1)->get();
+        $movie_hot = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->get();
         $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
@@ -21,7 +21,7 @@ class IndexController extends Controller
     }
 
     public function category($slug){
-        $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
+        $categories = Category::orderBy('id', 'desc')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
         $cate_slug = Category::where('slug', $slug)->first(); 
@@ -30,7 +30,7 @@ class IndexController extends Controller
     }  
 
     public function genre($slug){
-        $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
+        $categories = Category::orderBy('id', 'desc')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
         $genre_slug = Genre::where('slug', $slug)->first(); 
@@ -39,7 +39,7 @@ class IndexController extends Controller
     } 
     
     public function country($slug){
-        $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
+        $categories = Category::orderBy('id', 'desc')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
         $country_slug = Country::where('slug', $slug)->first(); 
