@@ -18,6 +18,7 @@
                     <th scope="col">Thể loại</th>
                     <th scope="col">Phụ đề</th>
                     <th scope="col">Quốc gia</th>
+                    <th scope="col">Năm</th>
                     <th scope="col">Hình ảnh</th>
                     <th scope="col">Thực hiện</th>
                   </tr>
@@ -62,6 +63,24 @@
                             @endif    
                             <td>{{ $movie->genre->title }}</td>
                             <td>{{ $movie->country->title }}</td>
+
+                            <td>
+                                <form method="GET">
+                                    <select class="select-year" name="year" id="{{ $movie->id }}">
+                                            @if (isset($movie->year))
+                                                <option selected value="">{{ isset($movie->year) ? $movie->year : $i }}</option>
+                                                @for ($i = 2000; $i < 2025; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            @else
+                                                @for ($i = 2000; $i < 2025; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            @endif
+                                    </select>
+                                </form>
+                            </td>
+
                             <td class="text-center">
                                 <img class="img-fluid" style="width:100px" src="{{ asset('uploads/movie/'.$movie->image) }}" alt="loi"> 
                             </td>

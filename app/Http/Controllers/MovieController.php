@@ -18,6 +18,13 @@ class MovieController extends Controller
         return view('admin.movie.index', compact('list'));
     }
 
+    public function update_year(Request $request){
+        $data = $request->all();
+        $movie = Movie::find($data['id_phim']);
+        $movie->year = $data['year'];
+        $movie->save();
+   }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -48,7 +55,6 @@ class MovieController extends Controller
         $movie->movie_hot = $data['movie_hot'];
         $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
-
         $get_image = $request->file('image');
 
         if($get_image){

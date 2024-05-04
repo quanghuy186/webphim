@@ -29,3 +29,4 @@ Route::resource('country', CountryController::class);
 Route::resource('episode', EpisodeController::class);
 Route::resource('movie', MovieController::class);
 Route::resource('genre', GenreController::class);
+Route::get('/update-year-phim', [MovieController::class, 'update_year']);
