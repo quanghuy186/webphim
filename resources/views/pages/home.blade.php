@@ -62,6 +62,8 @@
                </div>
             </div>
 
+           
+
             <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
                @foreach ($categories_home as $key => $category_home)
                   <section id="halim-advanced-widget-2">

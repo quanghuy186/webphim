@@ -21,7 +21,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('resorting', [CategoryController::class, 'resorting'])->name('resorting');
-
+Route::get('test', function(){
+    return view('pages.test');
+});
 Route::resource('category', CategoryController::class);
 Route::resource('country', CountryController::class);
 Route::resource('episode', EpisodeController::class);

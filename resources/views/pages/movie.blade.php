@@ -68,12 +68,12 @@
             </div>
          </div>
       </section>
+
       <section class="related-movies">
          <div id="halim_related_movies-2xx" class="wrap-slider">
             <div class="section-bar clearfix">
                <h3 class="section-title"><span>CÓ THỂ BẠN MUỐN XEM</span></h3>
             </div>
-
             <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
                <article class="thumb grid-item post-38498">
                   <div class="halim-item">
@@ -90,7 +90,6 @@
                      </a>
                   </div>
                </article>
-              
             </div>
             <script>
                jQuery(document).ready(function($) {				
@@ -98,7 +97,9 @@
                owl.owlCarousel({loop: true,margin: 4,autoplay: true,autoplayTimeout: 4000,autoplayHoverPause: true,nav: true,navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],responsiveClass: true,responsive: {0: {items:2},480: {items:3}, 600: {items:5},1000: {items: 5}}})});
             </script>
          </div>
+        
       </section>
+
    </main>
    <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4"></aside>
 </div>

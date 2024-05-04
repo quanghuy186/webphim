@@ -23,16 +23,12 @@
       <meta property="og:image" content="" />
       <meta property="og:image:width" content="300" />
       <meta property="og:image:height" content="55" />
-      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
       <link rel='dns-prefetch' href='//s.w.org' />
-      
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
       <link rel='stylesheet' id='bootstrap-css' href='{{ asset('css/bootstrap.min.css') }}' media='all' />
       <link rel='stylesheet' id='style-css' href=' {{ asset('css/style.css') }}' media='all' />
       <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('css/style.min.css') }}' media='all' />
-      {{-- <script type='text/javascript' src='{{ asset('js/jquery.min.js') }}' id='halim-jquery-js'></script> --}}
-      <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+      <script type='text/javascript' src='{{ asset('js/jquery.min.js') }}' id='halim-jquery-js'></script>
       <style type="text/css" id="wp-custom-css">
          .textwidget p a img {
          width: 100%;
@@ -154,11 +150,12 @@
          </div>
       </footer>
       <div id='easy-top'></div>
-     
-      <script type='text/javascript' src='js/bootstrap.min.js?ver=5.7.2' id='bootstrap-js'></script>
-      <script type='text/javascript' src='js/owl.carousel.min.js?ver=5.7.2' id='carousel-js'></script>
-     
-      <script type='text/javascript' src='js/halimtheme-core.min.js?ver=1626273138' id='halim-init-js'></script>
+
+      {{-- <script type='text/javascript' src='{{ asset('js/jquery.min.js') }}' id='halim-jquery-js'></script>
+      <script src="{{ asset('js/bootstrap.min.js') }}"></script> --}}
+      <script type='text/javascript' src='{{ asset('js/bootstrap.min.js') }}' id='bootstrap-js'></script>
+      <script type='text/javascript' src='{{ asset('js/owl.carousel.min.js') }}' id='carousel-js'></script>
+      <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js') }}' id='halim-init-js'></script>
       
       <script>
          jQuery(document).ready(function($) {				
