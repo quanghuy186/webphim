@@ -90,7 +90,23 @@
                   <div class="halim-item">
                      <a class="halim-thumb" href="chitiet.php" title="Đại Thánh Vô Song">
                         <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$related->image) }}" alt="Đại Thánh Vô Song" title="Đại Thánh Vô Song"></figure>
-                        <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                        <span class="status">
+                           @if ($movie->resolution == 0)
+                              <td>HD</td>
+                           @elseif($movie->resolution == 1)
+                              <td>SD</td>
+                           @elseif($movie->resolution == 2)
+                              <td>SDCam</td>
+                           @else
+                              <td>Full HD</td>
+                           @endif   
+                        </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                           @if ($movie->vietsub == 1)
+                              <td>Phụ đề</td>
+                           @else
+                              <td>Thuyết minh</td>
+                           @endif
+                        </span> 
                         <div class="icon_overlay"></div>
                         <div class="halim-post-title-box">
                            <div class="halim-post-title ">

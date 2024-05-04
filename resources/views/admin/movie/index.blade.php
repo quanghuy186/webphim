@@ -16,6 +16,7 @@
                     <th scope="col">Danh mục</th>
                     <th scope="col">Phim hot</th>
                     <th scope="col">Thể loại</th>
+                    <th scope="col">Phụ đề</th>
                     <th scope="col">Quốc gia</th>
                     <th scope="col">Hình ảnh</th>
                     <th scope="col">Thực hiện</th>
@@ -42,19 +43,28 @@
                             @else
                                 <td>Full HD</td>
                             @endif
-                            {{-- phim hot --}}
+                            {{-- the loai phim --}}
                             <td>{{ $movie->category->title }}</td>
-                                @if ($movie->movie_hot == 1)
-                                    <td>Phim hot</td>
-                                @else
-                                     <td>Không hot</td>
-                                @endif
-                               
-                                <td>{{ $movie->genre->title }}</td>
-                                <td>{{ $movie->country->title }}</td>
-                                <td class="text-center">
-                                    <img class="img-fluid" style="width:100px" src="{{ asset('uploads/movie/'.$movie->image) }}" alt="loi"> 
-                                </td>
+
+                            {{-- phu de --}}
+                            @if ($movie->vietsub == 1)
+                                <td>Phụ đề</td>
+                            @else
+                                <td>Thuyết minh</td>
+                            @endif  
+
+                            {{-- phim hot --}}
+
+                            @if ($movie->movie_hot == 1)
+                                <td>Phim hot</td>
+                            @else
+                                 <td>Không hot</td>
+                            @endif    
+                            <td>{{ $movie->genre->title }}</td>
+                            <td>{{ $movie->country->title }}</td>
+                            <td class="text-center">
+                                <img class="img-fluid" style="width:100px" src="{{ asset('uploads/movie/'.$movie->image) }}" alt="loi"> 
+                            </td>
                             <td>
                             <a class="btn btn-danger" href="{{ route('movie.edit', $movie->id) }}">Sửa</a>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">

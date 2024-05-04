@@ -36,7 +36,13 @@
                         @else
                            <td>Full HD</td>
                         @endif   
-                     </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                     </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                        @if ($mov->vietsub == 1)
+                           <td>Phụ đề</td>
+                        @else
+                           <td>Thuyết minh</td>
+                        @endif
+                     </span> 
                      <div class="icon_overlay"></div>
                      <div class="halim-post-title-box">
                         <div class="halim-post-title ">
@@ -51,14 +57,7 @@
           </div>
           <div class="clearfix"></div>
           <div class="text-center">
-             {{-- <ul class='page-numbers'>
-                <li><span aria-current="page" class="page-numbers current">1</span></li>
-                <li><a class="page-numbers" href="">2</a></li>
-                <li><a class="page-numbers" href="">3</a></li>
-                <li><span class="page-numbers dots">&hellip;</span></li>
-                <li><a class="page-numbers" href="">55</a></li>
-                <li><a class="next page-numbers" href=""><i class="hl-down-open rotate-right"></i></a></li>
-             </ul> --}}
+            {{-- phan trang --}}
              {!! $movie->links("pagination::bootstrap-4") !!}
           </div>
        </section>

@@ -43,6 +43,7 @@ class MovieController extends Controller
         $movie->status = $data['status'];
         $movie->resolution = $data['resolution'];
         $movie->slug = $data['slug'];
+        $movie->vietsub = $data['vietsub'];
         $movie->category_id = $data['category_id'];
         $movie->movie_hot = $data['movie_hot'];
         $movie->genre_id = $data['genre_id'];
@@ -96,6 +97,7 @@ class MovieController extends Controller
         $movie->status = $data['status'];
         $movie->status = $data['resolution'];
         $movie->slug = $data['slug'];
+        $movie->vietsub = $data['vietsub'];
         $movie->category_id = $data['category_id'];
         $movie->movie_hot = $data['movie_hot'];
         $movie->genre_id = $data['genre_id'];
@@ -104,14 +106,15 @@ class MovieController extends Controller
         $get_image = $request->file('image');
 
         if($get_image){
-            if(!empty($movie->image)){
+            if(file_exists('uploads/movie/'. $movie->image)){
                 unlink('uploads/movie/'. $movie->image);
+            }else{
+                $get_name_image = $get_image->getClientOriginalName(); //hinhanh1.jpg
+                $name_image =  current(explode('_', $get_name_image));//[0]c => hinhanh1 . [1] => jpg
+                $new_image = $name_image.rand(0,9999).'.'.$get_image->getClientOriginalExtension(); //hinhanh12334.jpg
+                $get_image->move('uploads/movie/', $new_image);
+                $movie->image = $new_image;
             }
-            $get_name_image = $get_image->getClientOriginalName(); //hinhanh1.jpg
-            $name_image =  current(explode('_', $get_name_image));//[0]c => hinhanh1 . [1] => jpg
-            $new_image = $name_image.rand(0,9999).'.'.$get_image->getClientOriginalExtension(); //hinhanh12334.jpg
-            $get_image->move('uploads/movie/', $new_image);
-            $movie->image = $new_image;
         }
 
         $movie->save();
@@ -124,7 +127,7 @@ class MovieController extends Controller
     public function destroy(string $id)
     {
         $movie = Movie::find($id);
-        if(!empty($movie->image)){
+        if(file_exists('uploads/movie/'. $movie->image)){
             unlink('uploads/movie/'. $movie->image);
         }
         $movie->delete();

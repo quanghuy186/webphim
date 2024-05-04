@@ -74,6 +74,24 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="status" class="form-label">Phụ đề</label>
+                            <select name="vietsub" id="vietsub" class="form-control">
+                                @if (isset($movies->vietsub))
+                                    @if ($movies->vietsub === 1)
+                                        <option selected value="1">Phụ đề</option>
+                                        <option value="0">Thuyết minh</option>
+                                    @else
+                                        <option value="1">Phụ đề</option>
+                                        <option selected value="0">Thuyết minh</option>
+                                    @endif
+                                @else
+                                    <option value="1">Phụ đề</option>
+                                    <option value="0">Thuyết minh</option>
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="status" class="form-label">Trạng thái</label>
                             <select name="status" id="status" class="form-control">
                                 @if (isset($movies->status))
