@@ -33,6 +33,11 @@
                             <label for="slug" class="form-lable">Slug</label>
                             <input  value="{{ isset($movies) ? $movies->slug : '' }}" class="form-control" type="text" name="slug" id="convert_slug" placeholder="Nhập dữ liệu">
                         </div>
+
+                        <div class="form-group">
+                            <label for="time" class="form-label">Thời lượng phim</label>
+                            <input value="{{ isset($movies) ? $movies->time : '' }}" class="form-control" type="text" name="time" placeholder="Nhập thời lượng phim">
+                        </div>
                         
                         <div class="form-group">
                             <label for="description" class="form-label">Mô tả</label>

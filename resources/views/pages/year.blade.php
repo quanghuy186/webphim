@@ -7,7 +7,16 @@
        <div class="panel-heading">
           <div class="row">
              <div class="col-xs-6">
-                <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">{{ $country_slug->title }}</a> » <span class="breadcrumb_last" aria-current="page">2024</span></span></span></div>
+                <div class="yoast_breadcrumb hidden-xs">
+                  <span>
+                      <span>Phim thuộc năm » 
+                        @for ($i = 2000; $i < 2025; $i++)
+                            <span class="breadcrumb_last" aria-current="page"><a title="{{ $i }}" href="{{ url('nam/'. $i) }}">{{ $i }}</a>
+                        </span>
+                        @endfor
+                     </span>
+                  </span>
+               </div>
              </div>
           </div>
        </div>
@@ -18,9 +27,10 @@
     <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
        <section>
           <div class="section-bar clearfix">
-             <h1 class="section-title"><span>{{ $country_slug->title }}</span></h1>
+             <h1 class="section-title"><span>{{ $year }}</span></h1>
           </div>
           <div class="halim_box">
+
             @foreach($movie as $mov)
             <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                <div class="halim-item">
@@ -35,13 +45,13 @@
                            <td>SDCam</td>
                         @else
                            <td>Full HD</td>
-                        @endif                 
+                        @endif              
                      </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                         @if ($mov->vietsub == 1)
-                           <td>Phụ đề</td>
+                            <td>Phụ đề</td>
                         @else
                            <td>Thuyết minh</td>
-                        @endif
+                        @endif     
                      </span> 
                      <div class="icon_overlay"></div>
                      <div class="halim-post-title-box">
@@ -54,10 +64,11 @@
                </div>
             </article> 
             @endforeach
+
           </div>
           <div class="clearfix"></div>
           <div class="text-center">
-            {!! $movie->links("pagination::bootstrap-4") !!}
+               {!! $movie->links("pagination::bootstrap-4") !!}
           </div>
        </section>
     </main>

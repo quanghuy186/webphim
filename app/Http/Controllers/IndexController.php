@@ -27,7 +27,16 @@ class IndexController extends Controller
         $cate_slug = Category::where('slug', $slug)->first(); 
         $movie = Movie::where('category_id', $cate_slug->id)->paginate(40);
         return view('pages.category', compact('categories', 'genres', 'countries', 'cate_slug', 'movie'));
-    }  
+    } 
+    
+    public function year($year){
+        $categories = Category::orderBy('id', 'desc')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
+        $genres = Genre::orderBy('id', 'desc')->get();
+        $countries = Country::orderBy('id', 'desc')->get();
+        $year = $year; 
+        $movie = Movie::where('year', $year)->paginate(40);
+        return view('pages.year', compact('categories', 'genres', 'countries', 'year', 'movie'));
+    } 
 
     public function genre($slug){
         $categories = Category::orderBy('id', 'desc')->where('status', 1)->orderBy('updated_at', 'DESC')->get();

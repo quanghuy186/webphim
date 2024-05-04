@@ -15,6 +15,7 @@ Route::get('quoc-gia/{slug}', [IndexController::class, 'country'])->name('countr
 Route::get('the-loai/{slug}', [IndexController::class, 'genre'])->name('genre');
 Route::get('phim/{slug}', [IndexController::class, 'movie'])->name('movie');
 Route::get('xem-phin', [IndexController::class, 'watch'])->name('watch');
+Route::get('/nam/{year}', [IndexController::class, 'year']);
 
 Auth::routes();
 

@@ -12,6 +12,7 @@
                     <th scope="col">Slug</th>
                     {{-- <th scope="col">Mô tả</th> --}}
                     <th scope="col">Trạng thái</th>
+                    <th scope="col">Thời lượng</th>
                     <th scope="col">Độ phân giải</th>
                     <th scope="col">Danh mục</th>
                     <th scope="col">Phim hot</th>
@@ -34,6 +35,8 @@
                             @else
                                 <td>Đang ẩn</td>
                             @endif
+                            {{-- thoi luong --}}
+                            <td>{{ $movie->time }}</td>
                             {{-- Độ phân giải --}}
                             @if ($movie->resolution == 0)
                                  <td>HD</td>
@@ -68,7 +71,7 @@
                                 <form method="GET">
                                     <select class="select-year" name="year" id="{{ $movie->id }}">
                                             @if (isset($movie->year))
-                                                <option selected value="">{{ isset($movie->year) ? $movie->year : $i }}</option>
+                                                <option selected value="{{ $movie->year }}">{{ isset($movie->year) ? $movie->year : $i }}</option>
                                                 @for ($i = 2000; $i < 2025; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
