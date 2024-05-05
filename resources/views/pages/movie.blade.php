@@ -76,6 +76,27 @@
                   </article>
                </div>
             </div>
+
+            <div class="section-bar clearfix">
+               <h2 class="section-title"><span style="color:#ffed4d">Từ khóa</span></h2>
+            </div>
+            <div class="entry-content htmlwrap clearfix">
+               <div class="video-item halim-entry-box">
+                  <article id="post-38424" class="item-content">
+                     @if ($movie->tags != NULL)
+                        @php
+                           $tags = array();
+                           $tags = explode(',', $movie->tags);
+                        @endphp
+                        @foreach ($tags as $tag)
+                           <a href="{{ url('tag/'.$tag) }}">{{ $tag }} </a>
+                        @endforeach
+                     @else
+                         Chưa có từ khóa
+                     @endif
+                  </article>
+               </div>
+            </div>
          </div>
       </section>
 
@@ -88,7 +109,7 @@
                @foreach ($movie_related as $related)
                <article class="thumb grid-item post-38498">
                   <div class="halim-item">
-                     <a class="halim-thumb" href="chitiet.php" title="Đại Thánh Vô Song">
+                     <a class="halim-thumb" href="{{ route('movie', $related->slug) }}" title="Đại Thánh Vô Song">
                         <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$related->image) }}" alt="Đại Thánh Vô Song" title="Đại Thánh Vô Song"></figure>
                         <span class="status">
                            @if ($movie->resolution == 0)

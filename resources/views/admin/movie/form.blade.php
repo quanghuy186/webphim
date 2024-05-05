@@ -45,6 +45,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="tags" class="form-label">Từ khóa</label>
+                            <textarea class="form-control" name="tags" id="tags" cols="30" rows="10" placeholder="Nhập từ khóa">{{ isset($movies) ? $movies->tags : '' }}</textarea>
+                        </div>
+
+                        <div class="form-group">
                             <label for="resolution" class="form-label">Độ phân giải</label>
                             <select name="resolution" id="resolution" class="form-control">
                                 @if (isset($movies->resolution))

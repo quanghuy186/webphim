@@ -30,12 +30,21 @@ class IndexController extends Controller
     } 
     
     public function year($year){
-        $categories = Category::orderBy('id', 'desc')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
+        $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
         $year = $year; 
-        $movie = Movie::where('year', $year)->paginate(40);
+        $movie = Movie::where('year', $year)->orderBy('updated_at', 'DESC')->paginate(40);
         return view('pages.year', compact('categories', 'genres', 'countries', 'year', 'movie'));
+    } 
+
+    public function tag($tag){
+        $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
+        $genres = Genre::orderBy('id', 'desc')->get();
+        $countries = Country::orderBy('id', 'desc')->get();
+        $tag = $tag; 
+        $movie = Movie::where('tags','LIKE', '%'.$tag.'%')->orderBy('updated_at', 'DESC')->paginate(40);
+        return view('pages.tag', compact('categories', 'genres', 'countries', 'tag', 'movie'));
     } 
 
     public function genre($slug){
@@ -68,7 +77,7 @@ class IndexController extends Controller
         $movie_related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug', [$slug])->get();
         return view('pages.movie', compact('genres', 'countries', 'categories', 'movie', 'movie_related'));
     }
-
+ 
     public function watch(){
         return view('pages.watch');
     }

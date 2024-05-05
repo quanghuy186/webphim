@@ -47,6 +47,7 @@ class MovieController extends Controller
         $movie->title = $data['title'];
         $movie->name_eng = $data['name_eng'];
         $movie->description = $data['description'];
+        $movie->tags = $data['tags'];
         $movie->time = $data['time'];
         $movie->status = $data['status'];
         $movie->resolution = $data['resolution'];
@@ -56,6 +57,7 @@ class MovieController extends Controller
         $movie->movie_hot = $data['movie_hot'];
         $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
+        
         $get_image = $request->file('image');
 
         if($get_image){
@@ -99,11 +101,12 @@ class MovieController extends Controller
         $data = $request->all();
         $movie = Movie::find($id);
         $movie->title = $data['title'];
-        $movie->title = $data['name_eng'];
+        $movie->name_eng = $data['name_eng'];
         $movie->description = $data['description'];
+        $movie->tags = $data['tags'];
         $movie->time = $data['time'];
         $movie->status = $data['status'];
-        $movie->status = $data['resolution'];
+        $movie->resolution = $data['resolution'];
         $movie->slug = $data['slug'];
         $movie->vietsub = $data['vietsub'];
         $movie->category_id = $data['category_id'];
