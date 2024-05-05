@@ -146,11 +146,10 @@
                owl.owlCarousel({loop: true,margin: 4,autoplay: true,autoplayTimeout: 4000,autoplayHoverPause: true,nav: true,navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],responsiveClass: true,responsive: {0: {items:2},480: {items:3}, 600: {items:5},1000: {items: 5}}})});
             </script>
          </div>
-        
       </section>
-
    </main>
-   <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4"></aside>
+   {{-- sidebar --}}
+   @include('pages/include/sidebar')
 </div>
 
 @endsection
