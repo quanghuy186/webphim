@@ -19,6 +19,7 @@
                     <th scope="col">Thể loại</th>
                     <th scope="col">Phụ đề</th>
                     <th scope="col">Quốc gia</th>
+                    <th scope="col">Top view</th>
                     <th scope="col">Năm</th>
                     <th scope="col">Hình ảnh</th>
                     <th scope="col">Thực hiện</th>
@@ -58,7 +59,6 @@
                             @endif  
 
                             {{-- phim hot --}}
-
                             @if ($movie->movie_hot == 1)
                                 <td>Phim hot</td>
                             @else
@@ -67,11 +67,39 @@
                             <td>{{ $movie->genre->title }}</td>
                             <td>{{ $movie->country->title }}</td>
 
+                            {{-- top view --}}
+                            <td>
+                                <form method="GET">
+                                    <select class="select-topview" name="topview" id="{{ $movie->id }}">
+                                        @if(isset($movie->topview))
+                                            @if ($movie->topview == 0)
+                                                <option selected value="0">Theo ngày</option>
+                                                <option value="1">Theo tháng</option>
+                                                <option value="2">Theo năm</option>    
+                                            @elseif ($movie->topview == 1)
+                                                <option value="0">Theo ngày</option>
+                                                <option selected value="1">Theo tháng</option>
+                                                <option value="2">Theo năm</option>      
+                                            @else
+                                                <option value="0">Theo ngày</option>
+                                                <option value="1">Theo tháng</option>
+                                                <option selected value="2">Theo năm</option>
+                                            @endif
+                                        @else
+                                            <option value="0">Theo ngày</option>
+                                            <option value="1">Theo tháng</option>
+                                            <option value="2">Theo năm</option>      
+                                        @endif
+                                    </select>
+                                    
+                                </form>
+                            </td>
+                            {{-- year --}}
                             <td>
                                 <form method="GET">
                                     <select class="select-year" name="year" id="{{ $movie->id }}">
                                             @if (isset($movie->year))
-                                                <option selected value="{{ $movie->year }}">{{ isset($movie->year) ? $movie->year : $i }}</option>
+                                                <option selected value="{{ $movie->year }}">{{ isset($movie->year) ? $movie->year : '' }}</option>
                                                 @for ($i = 2000; $i < 2025; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
@@ -83,13 +111,13 @@
                                     </select>
                                 </form>
                             </td>
-
+                            {{-- action --}}
                             <td class="text-center">
                                 <img class="img-fluid" style="width:100px" src="{{ asset('uploads/movie/'.$movie->image) }}" alt="loi"> 
                             </td>
-                            <td>
+                            <td class="text-center">
                             <a class="btn btn-danger" href="{{ route('movie.edit', $movie->id) }}">Sửa</a>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal">
                                 Xóa
                             </button>
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

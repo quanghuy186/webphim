@@ -86,6 +86,32 @@
             @yield('content')
         </main>
     </div>
+
+    <script type="text/javascript">
+        $('.select-topview').change(function() {
+            var topview = $(this).find(':selected').val();
+            var id_phim = $(this).attr('id');
+            if (topview == 0){
+                var top = 'theo ngày';
+            }else if (topview == 1){
+                var top = 'theo tháng';
+            }else{
+                var top = 'theo năm';
+            }
+            $.ajax({
+                url: "{{ url('/update-topview-phim') }}",
+                method: "GET",
+                data: {
+                    topview: topview,
+                    id_phim: id_phim
+                },
+                success: function() {
+                    alert('Thay đổi phim ' + top + ' thành công');
+                }
+            });
+        })
+    </script>
+
     <script type="text/javascript">
         $('.select-year').change(function() {
             var year = $(this).find(':selected').val();
@@ -104,7 +130,7 @@
         })
     </script>
 
-
+   
 
     <script type="text/javascript">
         $(document).ready(function() {

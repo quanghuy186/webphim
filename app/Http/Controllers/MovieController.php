@@ -23,7 +23,14 @@ class MovieController extends Controller
         $movie = Movie::find($data['id_phim']);
         $movie->year = $data['year'];
         $movie->save();
-   }
+    }
+
+    public function topview(Request $request){
+        $data = $request->all();
+        $movie = Movie::find($data['id_phim']);
+        $movie->topview = $data['topview'];
+        $movie->save();
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -105,7 +105,7 @@
                             <label for="status" class="form-label">Trạng thái</label>
                             <select name="status" id="status" class="form-control">
                                 @if (isset($movies->status))
-                                    @if ($movies->status === 1)
+                                    @if ($movies->status == 1)
                                         <option selected value="1">Hiển thị</option>
                                         <option value="0">Đang ẩn</option>
                                     @else

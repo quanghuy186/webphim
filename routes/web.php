@@ -17,6 +17,8 @@ Route::get('/phim/{slug}', [IndexController::class, 'movie'])->name('movie');
 Route::get('/xem-phin', [IndexController::class, 'watch'])->name('watch');
 Route::get('/nam/{year}', [IndexController::class, 'year']);
 Route::get('/tag/{tag}', [IndexController::class, 'tag']);
+Route::get('/update-year-phim', [MovieController::class, 'update_year']);
+Route::get('/update-topview-phim', [MovieController::class, 'topview']);
 
 Auth::routes();
 
@@ -31,4 +33,3 @@ Route::resource('country', CountryController::class);
 Route::resource('episode', EpisodeController::class);
 Route::resource('movie', MovieController::class);
 Route::resource('genre', GenreController::class);
-Route::get('/update-year-phim', [MovieController::class, 'update_year']);
