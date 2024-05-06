@@ -94,9 +94,9 @@
             if (topview == 0){
                 var top = 'theo ngày';
             }else if (topview == 1){
-                var top = 'theo tháng';
+                var top = 'theo tuần';
             }else{
-                var top = 'theo năm';
+                var top = 'theo tháng';
             }
             $.ajax({
                 url: "{{ url('/update-topview-phim') }}",

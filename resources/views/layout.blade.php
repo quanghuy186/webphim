@@ -170,6 +170,27 @@
       <script type='text/javascript' src='{{ asset('js/owl.carousel.min.js') }}' id='carousel-js'></script>
       <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js') }}' id='halim-init-js'></script>
       
+      <script type="text/javascript">
+         $('.filter-sidebar').click(function(){
+            var href = $(this).attr('href');
+            if(href=='#ngay'){
+               var value = 0;
+            }else if(href=='#tuan'){
+               var value = 1;
+            }else{
+               var value = 2;
+            }
+            $.ajax({
+               url:"{{url('/filter-topview-phim')}}",
+               method:"GET",
+               data:{value:value},
+               success:function(data){
+                  $('#show'+value).html(data);
+               }
+            });
+         })
+      </script>
+
       <script>
          jQuery(document).ready(function($) {				
          var owl = $('#halim_related_movies-2');

@@ -74,21 +74,21 @@
                                         @if(isset($movie->topview))
                                             @if ($movie->topview == 0)
                                                 <option selected value="0">Theo ngày</option>
-                                                <option value="1">Theo tháng</option>
-                                                <option value="2">Theo năm</option>    
+                                                <option value="1">Theo tuần</option>
+                                                <option value="2">Theo tháng</option>    
                                             @elseif ($movie->topview == 1)
                                                 <option value="0">Theo ngày</option>
-                                                <option selected value="1">Theo tháng</option>
-                                                <option value="2">Theo năm</option>      
+                                                <option selected value="1">Theo tuần</option>
+                                                <option value="2">Theo tháng</option>      
                                             @else
                                                 <option value="0">Theo ngày</option>
-                                                <option value="1">Theo tháng</option>
-                                                <option selected value="2">Theo năm</option>
+                                                <option value="1">Theo tuần</option>
+                                                <option selected value="2">Theo tháng</option>
                                             @endif
                                         @else
                                             <option value="0">Theo ngày</option>
-                                            <option value="1">Theo tháng</option>
-                                            <option value="2">Theo năm</option>      
+                                            <option value="1">Theo tuần</option>
+                                            <option value="2">Theo tháng</option>      
                                         @endif
                                     </select>
                                     

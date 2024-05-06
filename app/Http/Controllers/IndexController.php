@@ -24,14 +24,15 @@ class IndexController extends Controller
     public function category($slug){
         $categories = Category::orderBy('id', 'desc')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
         $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take(15)->get();
-
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
         $cate_slug = Category::where('slug', $slug)->first(); 
         $movie = Movie::where('category_id', $cate_slug->id)->paginate(40);
         return view('pages.category', compact('categories', 'genres', 'countries', 'cate_slug', 'movie', 'movie_hot_sidebar'));
     } 
-    
+
+   
+
     public function year($year){
         $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
         $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take(15)->get();
