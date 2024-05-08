@@ -52,7 +52,7 @@
          </div>
       </div>
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-         <li class="nav-item">
+         <li class="nav-item active">
             <a class="nav-link filter-sidebar" id="pills-home-tab" data-toggle="pill" href="#ngay" role="tab" aria-controls="pills-home" aria-selected="true">Ngày</a>
          </li>
          <li class="nav-item">
@@ -63,13 +63,18 @@
          </li>
       </ul>
 
+      <div id="halim-ajax-popular-post" class="popular-post">
+          <span id="show_data_default"></span>
+      </div>
+
        <div class="tab-content" id="pills-tabContent">
-         <div class="tab-pane fade" id="ngay" role="tabpanel" aria-labelledby="pills-home-tab">
+         <div class="tab-pane fade" id="tuan" role="tabpanel" aria-labelledby="pills-home-tab">
             <div id="halim-ajax-popular-post" class="popular-post">
 
-               <span id="show0">
+               <span id="show_data">
 
                </span>
+         
 
                {{-- <div class="item post-37176">
                   <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
@@ -89,7 +94,7 @@
             </div>
          </div>
 
-         <div class="tab-pane fade" id="tuan" role="tabpanel" aria-labelledby="pills-profile-tab">
+         {{-- <div class="tab-pane fade" id="tuan" role="tabpanel" aria-labelledby="pills-profile-tab">
             <div id="halim-ajax-popular-post" class="popular-post">
                <span id="show1">
 
@@ -104,7 +109,7 @@
                </span>
             </div>
          </div>
-       </div>
+       </div> --}}
 
       <div class="clearfix"></div>
    </div>

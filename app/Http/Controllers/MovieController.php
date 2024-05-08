@@ -68,6 +68,44 @@ class MovieController extends Controller
         echo $output;
     }
 
+    
+    public function filter_default(Request $request){
+        $data = $request->all();
+        $movie = Movie::where('topview', 0)->orderBy('updated_at', 'DESC')->take(20)->get();
+        $output = '';
+        foreach ($movie as $key => $mov){
+            if($mov->resolution == 0){
+                $text = 'HD';
+            }else if($mov->resolution == 1){
+                $text = 'SD';
+            }else if($mov->resolution == 2){
+                $text = 'SDCam';
+            }else{
+                $text = 'Full HD';
+            }
+
+            $output.= '
+                <div class="item post-37176">
+                    <a href="chitiet.php" title="'. $mov->title .'">
+                        <div class="item-link">
+                            <img src="uploads/movie/'.$mov->image.'" class="lazy post-thumb" alt="'. $mov->title .'" title="'. $mov->title .'" />
+                            <span class="is_trailer">'.$text.'</span>
+                        </div>
+                        <p class="title">'. $mov->title .'</p>
+                    </a>
+                    <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
+                    <div style="float: left;">
+                        <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
+                        <span style="width: 0%"></span>
+                        </span>
+                    </div>
+                </div>
+            ';
+        }
+        echo $output;
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

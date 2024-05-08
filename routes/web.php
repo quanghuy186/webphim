@@ -19,7 +19,8 @@ Route::get('/nam/{year}', [IndexController::class, 'year']);
 Route::get('/tag/{tag}', [IndexController::class, 'tag']);
 Route::get('/update-year-phim', [MovieController::class, 'update_year']);
 Route::get('/update-topview-phim', [MovieController::class, 'topview']);
-Route::get('/filter-topview-phim', [MovieController::class, 'filter_topview']);
+Route::post('/filter-topview-phim', [MovieController::class, 'filter_topview']);
+Route::get('/filter-topview-default', [MovieController::class, 'filter_default']);
 
 Auth::routes();
 

@@ -171,25 +171,43 @@
       <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js') }}' id='halim-init-js'></script>
       
       <script type="text/javascript">
-         $('.filter-sidebar').click(function(){
-            var href = $(this).attr('href');
-            if(href=='#ngay'){
-               var value = 0;
-            }else if(href=='#tuan'){
-               var value = 1;
-            }else{
-               var value = 2;
-            }
-            $.ajax({
-               url:"{{url('/filter-topview-phim')}}",
-               method:"GET",
-               data:{value:value},
-               success:function(data){
-                  $('#show'+value).html(data);
-               }
-            });
-         })
-      </script>
+         $(document).ready(function(){
+             // AJAX request to filter-topview-default endpoint
+             $.ajax({
+                 url: "{{ url('filter-topview-default') }}",
+                 method: "GET",
+                 success: function(data){
+                     $('#show_data_default').html(data);
+                 }
+             });
+     
+             // Click event handler for elements with class 'filter-sidebar'
+             $('.filter-sidebar').click(function(){
+                 var href = $(this).attr('href');
+                 var value;
+                 if (href == '#ngay'){
+                     value = 0;
+                 } else if (href == '#tuan'){
+                     value = 1;
+                 } else {
+                     value = 2;
+                 }
+                 // AJAX request to filter-topview-phim endpoint with value as parameter
+                 $.ajax({
+                     url: "{{ url('/filter-topview-phim') }}",
+                     method: "POST",
+                     data: {value: value},
+                     headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                     },
+                     success: function(data){
+                         $('#show_data' + value).html(data);
+                     }
+                 });
+             });
+         });
+     </script>
+     
 
       <script>
          jQuery(document).ready(function($) {				
