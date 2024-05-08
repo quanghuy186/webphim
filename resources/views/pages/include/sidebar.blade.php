@@ -63,7 +63,7 @@
          </li>
       </ul>
 
-      <div id="halim-ajax-popular-post" class="popular-post">
+      <div id="halim-ajax-popular-post-default" class="popular-post">
           <span id="show_data_default"></span>
       </div>
 

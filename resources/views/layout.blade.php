@@ -8,6 +8,7 @@
       <meta content="VN" name="geo.region" />
       <meta name="DC.language" scheme="utf-8" content="vi" />
       <meta name="language" content="Việt Nam">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
       <link rel="shortcut icon" href="https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png" type="image/x-icon" />
       <meta name="revisit-after" content="1 days" />
       <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
@@ -196,12 +197,13 @@
                  $.ajax({
                      url: "{{ url('/filter-topview-phim') }}",
                      method: "POST",
-                     data: {value: value},
+                     data:{value: value},
                      headers: {
-                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                      },
                      success: function(data){
-                         $('#show_data' + value).html(data);
+                        $('#halim-ajax-popular-post-default').css('display', 'none');
+                         $('#show_data').html(data);
                      }
                  });
              });
