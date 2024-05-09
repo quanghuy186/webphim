@@ -21,6 +21,7 @@ Route::get('/update-year-phim', [MovieController::class, 'update_year']);
 Route::get('/update-topview-phim', [MovieController::class, 'topview']);
 Route::post('/filter-topview-phim', [MovieController::class, 'filter_topview']);
 Route::get('/filter-topview-default', [MovieController::class, 'filter_default']);
+Route::get('/update-season-phim', [MovieController::class, 'update_season']);
 
 Auth::routes();
 

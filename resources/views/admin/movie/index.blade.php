@@ -20,6 +20,7 @@
                     <th scope="col">Phụ đề</th>
                     <th scope="col">Quốc gia</th>
                     <th scope="col">Top view</th>
+                    <th scope="col">Season</th>
                     <th scope="col">Năm</th>
                     <th scope="col">Hình ảnh</th>
                     <th scope="col">Thực hiện</th>
@@ -94,12 +95,29 @@
                                     
                                 </form>
                             </td>
+                            {{-- season --}}
+                            <td>
+                                <form method="GET">
+                                    <select class="select-season" name="season" id="{{ $movie->id }}">
+                                            @if (isset($movie->season))
+                                                <option selected value="{{ $movie->season }}">{{ isset($movie->season) ? $movie->season : 0 }}</option>
+                                                @for ($i = 1; $i < 21; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            @else
+                                                @for ($i = 1; $i < 21; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            @endif
+                                    </select>
+                                </form>
+                            </td>
                             {{-- year --}}
                             <td>
                                 <form method="GET">
                                     <select class="select-year" name="year" id="{{ $movie->id }}">
                                             @if (isset($movie->year))
-                                                <option selected value="{{ $movie->year }}">{{ isset($movie->year) ? $movie->year : '' }}</option>
+                                                <option selected value="{{ $movie->year }}">{{ isset($movie->year) ? $movie->year : 0 }}</option>
                                                 @for ($i = 2000; $i < 2025; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor

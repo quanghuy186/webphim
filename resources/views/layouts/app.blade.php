@@ -113,6 +113,26 @@
     </script>
 
     <script type="text/javascript">
+        $('.select-season').change(function() {
+            var season = $(this).find(':selected').val();
+            var id_phim = $(this).attr('id');
+            $.ajax({
+                url: "{{ url('/update-season-phim') }}",
+                method: "GET",
+                data: {
+                    season: season,
+                    id_phim: id_phim
+                },
+                success: function() {
+                    alert('Thay đổi phim theo season ' + season + ' thành công');
+                }
+            });
+        })
+    </script>
+
+
+{{-- year --}}
+    <script type="text/javascript">
         $('.select-year').change(function() {
             var year = $(this).find(':selected').val();
             var id_phim = $(this).attr('id');
