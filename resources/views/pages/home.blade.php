@@ -59,10 +59,16 @@
                             @endif
                            </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                               @if ($hot->vietsub == 1)
-                                <td>Phụ đề</td>
-                              @else
-                                 <td>Thuyết minh</td>
-                              @endif  
+                              Phụ đề
+                              @if ($hot->season != 0)
+                                 - Season : {{ $hot->season }}
+                              @endif
+                           @else
+                              Thuyết minh
+                                 @if ($hot->season != 0)
+                                    - Season : {{ $hot->season }}
+                                 @endif
+                           @endif    
                            </span> 
                               <div class="icon_overlay"></div>
                               <div class="halim-post-title-box">
@@ -103,10 +109,16 @@
                                     @endif   
                                  </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                                     @if ($hot->vietsub == 1)
-                                       <td>Phụ đề</td>
+                                       Phụ đề   
+                                          @if ($hot->season != 0)
+                                             - Season : {{ $hot->season }}
+                                          @endif
                                     @else
-                                       <td>Thuyết minh</td>
-                                    @endif
+                                       Thuyết minh
+                                          @if ($hot->season != 0)
+                                             - Season : {{ $hot->season }}
+                                          @endif
+                                    @endif  
                                  </span> 
                                  <div class="icon_overlay"></div>
                                  <div class="halim-post-title-box">

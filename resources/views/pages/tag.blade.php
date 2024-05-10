@@ -38,11 +38,7 @@
                            <td>Full HD</td>
                         @endif              
                      </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
-                        @if ($mov->vietsub == 1)
-                            <td>Phụ đề</td>
-                        @else
-                           <td>Thuyết minh</td>
-                        @endif     
+                            
                      </span> 
                      <div class="icon_overlay"></div>
                      <div class="halim-post-title-box">

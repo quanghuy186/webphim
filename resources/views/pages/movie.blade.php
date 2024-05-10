@@ -58,6 +58,8 @@
                         <li class="list-info-group-item"><span>Danh mục</span> : <a href="{{ route('category', $movie->category->slug) }}" rel="category tag">{{ $movie->category->title }}</a> 
                         </li>
                         <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{ route('country', $movie->country->slug) }}" rel="tag">{{ $movie->country->title }}</a></li>
+                        <li class="list-info-group-item"><span>Season</span> : {{ $movie->season }}</li>
+                    
                      </ul>
                      <div class="movie-trailer hidden"></div>
                   </div>
@@ -123,10 +125,16 @@
                            @endif   
                         </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                            @if ($movie->vietsub == 1)
-                              <td>Phụ đề</td>
+                              Phụ đề
+                              @if ($movie->season != 0)
+                                 - Season : {{ $movie->season }}
+                              @endif
                            @else
-                              <td>Thuyết minh</td>
-                           @endif
+                              Thuyết minh
+                                 @if ($movie->season != 0)
+                                    - Season : {{ $movie->season }}
+                                 @endif
+                           @endif  
                         </span> 
                         <div class="icon_overlay"></div>
                         <div class="halim-post-title-box">

@@ -37,11 +37,19 @@
                         @else
                            <td>Full HD</td>
                         @endif              
-                     </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                     </span>
+                     
+                     <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                         @if ($mov->vietsub == 1)
-                            <td>Phụ đề</td>
+                            Phụ đề
+                              @if ($mov->season != 0)
+                                 - Season : {{ $mov->season }}
+                              @endif
                         @else
-                           <td>Thuyết minh</td>
+                           Thuyết minh
+                              @if ($mov->season != 0)
+                                 - Season : {{ $mov->season }}
+                              @endif
                         @endif     
                      </span> 
                      <div class="icon_overlay"></div>
