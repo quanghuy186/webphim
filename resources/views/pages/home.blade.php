@@ -48,15 +48,17 @@
                            <a class="halim-thumb" href="{{ route('movie', $hot->slug) }}" title="{{ $hot->title }}">
                               <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'. $hot->image) }}"></figure>
                               <span class="status">  
-                           @if ($hot->resolution == 0)
-                                 <td>HD</td>
-                            @elseif($hot->resolution == 1)
-                                <td>SD</td>
-                            @elseif($hot->resolution == 2)
-                                <td>SDCam</td>
-                            @else
-                                <td>Full HD</td>
-                            @endif
+                              @if ($hot->resolution == 0)
+                                 HD
+                              @elseif($hot->resolution == 1)
+                                 SD
+                              @elseif($hot->resolution == 2)
+                                 SDCam
+                              @elseif($hot->resolution == 3)
+                                 Full HD
+                              @else
+                                 Trailer
+                              @endif  
                            </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                               @if ($hot->vietsub == 1)
                               Phụ đề

@@ -10,6 +10,7 @@
                   <tr>
                     <th scope="col">Tiêu đề</th>
                     <th scope="col">Slug</th>
+                    <th scope="col">Trailer</th>
                     {{-- <th scope="col">Mô tả</th> --}}
                     <th scope="col">Trạng thái</th>
                     <th scope="col">Thời lượng</th>
@@ -31,6 +32,7 @@
                         <tr>
                             <th scope="row">{{ $movie->title }}</th>
                             <td>{{ $movie->slug }}</td>
+                            <th scope="row">{{ $movie->trailer }}</th>
                             {{-- {{Trạng thái}} --}}
                             @if ($movie->status === 1)
                                 <td>Hiển thị</td>
@@ -135,6 +137,7 @@
                             </td>
                             <td class="text-center">
                             <a class="btn btn-danger" href="{{ route('movie.edit', $movie->id) }}">Sửa</a>
+                            
                             <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal">
                                 Xóa
                             </button>

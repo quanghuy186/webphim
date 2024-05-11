@@ -50,8 +50,10 @@ class MovieController extends Controller
                 $text = 'SD';
             }else if($mov->resolution == 2){
                 $text = 'SDCam';
-            }else{
+            }else if($mov->resolution == 2){
                 $text = 'Full HD';
+            }else{
+                $text = 'Trailer';
             }
 
             $output.= '
@@ -87,8 +89,10 @@ class MovieController extends Controller
                 $text = 'SD';
             }else if($mov->resolution == 2){
                 $text = 'SDCam';
-            }else{
+            }else if($mov->resolution == 2){
                 $text = 'Full HD';
+            }else{
+                $text = 'Trailer';
             }
 
             $output.= '
@@ -133,6 +137,7 @@ class MovieController extends Controller
         $movie = new Movie;
         $data = $request->all();
         $movie->title = $data['title'];
+        $movie->trailer = $data['trailer'];
         $movie->name_eng = $data['name_eng'];
         $movie->description = $data['description'];
         $movie->tags = $data['tags'];
@@ -189,6 +194,7 @@ class MovieController extends Controller
         $data = $request->all();
         $movie = Movie::find($id);
         $movie->title = $data['title'];
+        $movie->trailer = $data['trailer'];
         $movie->name_eng = $data['name_eng'];
         $movie->description = $data['description'];
         $movie->tags = $data['tags'];
@@ -216,7 +222,7 @@ class MovieController extends Controller
             }
         }
 
-        $movie->save();
+        $movie->update();
         return redirect()->back();
     }
 

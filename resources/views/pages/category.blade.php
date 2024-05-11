@@ -29,13 +29,15 @@
                      <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$mov->image) }}" alt="BẠN CÙNG PHÒNG CỦA TÔI LÀ GUMIHO" title="BẠN CÙNG PHÒNG CỦA TÔI LÀ GUMIHO"></figure>
                      <span class="status">
                         @if ($mov->resolution == 0)
-                           <td>HD</td>
+                           HD
                         @elseif($mov->resolution == 1)
-                           <td>SD</td>
+                           SD
                         @elseif($mov->resolution == 2)
-                           <td>SDCam</td>
+                           SDCam
+                        @elseif($mov->resolution == 3)
+                           Full HD
                         @else
-                           <td>Full HD</td>
+                           Trailer
                         @endif              
                      </span>
                      

@@ -15,15 +15,17 @@
                          <div class="item-link">
                             <img src="{{ asset('uploads/movie/'. $hot_sidebar->image)  }}" class="lazy post-thumb" alt="{{ $hot_sidebar->title }}" title="{{ $hot_sidebar->title }}" />
                             <span class="is_trailer">
-                               @if ($hot_sidebar->resolution == 0)
-                                  <td>HD</td>
-                               @elseif($hot_sidebar->resolution == 1)
-                                  <td>SD</td>
-                               @elseif($hot_sidebar->resolution == 2)
-                                  <td>SDCam</td>
-                               @else
-                                  <td>Full HD</td>
-                               @endif   
+                              @if ($hot_sidebar->resolution == 0)
+                                 HD
+                              @elseif($hot_sidebar->resolution == 1)
+                                 SD
+                              @elseif($hot_sidebar->resolution == 2)
+                                 SDCam
+                              @elseif($hot_sidebar->resolution == 3)
+                                 Full HD
+                              @else
+                                 Trailer
+                              @endif     
                             </span>
                          </div>
                          <p class="title">{{ $hot_sidebar->title }}</p>

@@ -25,6 +25,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="trailer" class="form-lable">Trailer</label>
+                            <input value="{{ isset($movies) ? $movies->trailer : '' }}" class="form-control" type="text" name="trailer" placeholder="Nhập trailer">
+                        </div>
+
+                        <div class="form-group">
                             <label for="name_eng" class="form-lable">Tên tiếng anh</label>
                             <input value="{{ isset($movies) ? $movies->name_eng : '' }}" class="form-control" type="text" name="name_eng" placeholder="Nhập tên tiếng anh">
                         </div>
@@ -58,27 +63,39 @@
                                         <option value="1">SD</option>
                                         <option value="2">HDCam</option>
                                         <option value="3">FullHD</option>
+                                    <option value="4">Trailer</option>
+
                                     @elseif($movies->resolution === 1)
                                         <option value="0">HD</option>
                                         <option selected value="1">SD</option>
                                         <option value="2">HDCam</option>
                                         <option value="3">FullHD</option>
+                                        <option value="4">Trailer</option>
                                     @elseif($movies->resolution === 2)
                                         <option value="0">HD</option>
                                         <option value="1">SD</option>
                                         <option selected value="2">HDCam</option>
                                         <option value="3">FullHD</option>
-                                    @else
+                                        <option value="4">Trailer</option>
+                                    @elseif($movies->resolution === 3)
                                         <option value="0">HD</option>
                                         <option value="1">SD</option>
                                         <option value="2">HDCam</option>
                                         <option selected value="3">FullHD</option>
+                                        <option value="4">Trailer</option>
+                                    @else
+                                        <option value="0">HD</option>
+                                        <option value="1">SD</option>
+                                        <option value="2">HDCam</option>
+                                        <option value="3">FullHD</option>
+                                        <option selected value="4">Trailer</option>
                                     @endif
                                 @else
                                     <option value="0">HD</option>
                                     <option value="1">SD</option>
                                     <option value="2">HDCam</option>
                                     <option value="3">FullHD</option>
+                                    <option value="4">Trailer</option>
                                 @endif
                             </select>
                         </div>
@@ -167,11 +184,9 @@
                         <div class="form-group">
                             <label for="title" class="form-lable">Hình ảnh</label>
                             <input type="file" name="image" class="form-control">
-
                             @if(isset($movies))
                                   <img style="width: 120px" src="{{ asset('uploads/movie/'.$movies->image) }}" alt="">
                             @endif
-
                         </div>
 
                         @if (isset($movies))

@@ -41,15 +41,17 @@
                   <h2 class="movie-title title-2" style="font-size: 12px;">{{ $movie->name_eng }}</h2>
                      <ul class="list-info-group">
                         <li class="list-info-group-item"><span>Trạng Thái</span> : <span class="quality"> 
-                     @if ($movie->resolution == 0)
-                           <td>HD</td>
-                      @elseif($movie->resolution == 1)
-                          <td>SD</td>
-                      @elseif($movie->resolution == 2)
-                          <td>SDCam</td>
-                      @else
-                          <td>Full HD</td>
-                      @endif
+                        @if ($movie->resolution == 0)
+                           HD
+                        @elseif($movie->resolution == 1)
+                           SD
+                        @elseif($movie->resolution == 2)
+                           SDCam
+                        @elseif($movie->resolution == 3)
+                           Full HD
+                        @else
+                           Trailer
+                        @endif      
                      </span><span class="episode">Vietsub</span></li>
                         <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
                         <li class="list-info-group-item"><span>Thời lượng</span> : {{ $movie->time }}</li>
@@ -99,6 +101,19 @@
                   </article>
                </div>
             </div>
+
+            <div class="section-bar clearfix">
+               <h2 class="section-title"><span style="color:#ffed4d">Trailer</span></h2>
+            </div>
+            <div class="entry-content htmlwrap clearfix">
+               <div class="video-item halim-entry-box">
+                  <article id="post-38424" class="item-content w-100">
+                     <iframe width="100%" height="315" src="https://www.youtube.com/embed/yjRHZEUamCc?si=yjnLcAtrNb2pGcjR" title="YouTube video player" frameborder="0" 
+                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  </article>
+               </div>
+            </div>
+
          </div>
       </section>
 
@@ -115,14 +130,16 @@
                         <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$related->image) }}" alt="Đại Thánh Vô Song" title="Đại Thánh Vô Song"></figure>
                         <span class="status">
                            @if ($movie->resolution == 0)
-                              <td>HD</td>
+                              HD
                            @elseif($movie->resolution == 1)
-                              <td>SD</td>
+                              SD
                            @elseif($movie->resolution == 2)
-                              <td>SDCam</td>
+                              SDCam
+                           @elseif($movie->resolution == 3)
+                              Full HD
                            @else
-                              <td>Full HD</td>
-                           @endif   
+                              Trailer
+                        @endif   
                         </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                            @if ($movie->vietsub == 1)
                               Phụ đề
