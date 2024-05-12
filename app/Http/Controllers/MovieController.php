@@ -58,7 +58,7 @@ class MovieController extends Controller
 
             $output.= '
                 <div class="item post-37176">
-                    <a href="chitiet.php" title="'. $mov->title .'">
+                    <a href="'.  route("movie", $mov->slug) .'" title="'. $mov->title .'">
                         <div class="item-link">
                             <img src="uploads/movie/'.$mov->image.'" class="lazy post-thumb" alt="'. $mov->title .'" title="'. $mov->title .'" />
                             <span class="is_trailer">'.$text.'</span>
@@ -97,7 +97,7 @@ class MovieController extends Controller
 
             $output.= '
                 <div class="item post-37176">
-                    <a href="chitiet.php" title="'. $mov->title .'">
+                    <a href="'.  route("movie", $mov->slug) .'" title="'. $mov->title .'">
                         <div class="item-link">
                             <img src="uploads/movie/'.$mov->image.'" class="lazy post-thumb" alt="'. $mov->title .'" title="'. $mov->title .'" />
                             <span class="is_trailer">'.$text.'</span>

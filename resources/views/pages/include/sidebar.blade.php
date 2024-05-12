@@ -11,7 +11,7 @@
              @foreach ($movie_hot_sidebar as $hot_sidebar)
                 <div id="halim-ajax-popular-post" class="popular-post">
                    <div class="item post-37176">
-                      <a href="chitiet.php" title="{{ $hot_sidebar->title }}">
+                      <a href="{{ route('movie', $hot_sidebar->slug) }}" title="{{ $hot_sidebar->title }}">
                          <div class="item-link">
                             <img src="{{ asset('uploads/movie/'. $hot_sidebar->image)  }}" class="lazy post-thumb" alt="{{ $hot_sidebar->title }}" title="{{ $hot_sidebar->title }}" />
                             <span class="is_trailer">
@@ -45,6 +45,53 @@
     </div>
  </aside>
 
+ <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
+   <div id="halim_tab_popular_videos-widget-7" class="widget halim_tab_popular_videos-widget">
+      <div class="section-bar clearfix">
+         <div class="section-title">
+            <span>Phim sắp chiếu</span>
+         </div>
+      </div>
+      <section class="tab-content">
+         <div role="tabpanel" class="tab-pane active halim-ajax-popular-post">
+            <div class="halim-ajax-popular-post-loading hidden"></div>
+            @foreach ($hot_trailer as $trailer)
+               <div id="halim-ajax-popular-post" class="popular-post">
+                  <div class="item post-37176">
+                     <a href="{{ route('movie', $trailer->slug) }}" title="{{ $trailer->title }}">
+                        <div class="item-link">
+                           <img src="{{ asset('uploads/movie/'. $trailer->image)  }}" class="lazy post-thumb" alt="{{ $trailer->title }}" title="{{ $trailer->title }}" />
+                           <span class="is_trailer">
+                             @if ($trailer->resolution == 0)
+                                HD
+                             @elseif($trailer->resolution == 1)
+                                SD
+                             @elseif($trailer->resolution == 2)
+                                SDCam
+                             @elseif($trailer->resolution == 3)
+                                Full HD
+                             @else
+                                Trailer
+                             @endif     
+                           </span>
+                        </div>
+                        <p class="title">{{ $trailer->title }}</p>
+                     </a>
+                     <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
+                     <div style="float: left;">
+                        <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
+                        <span style="width: 0%"></span>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+            @endforeach
+         </div>
+      </section>
+      <div class="clearfix"></div>
+   </div>
+</aside>
+
  {{-- top view --}}
  <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
    <div id="halim_tab_popular_videos-widget-7" class="widget halim_tab_popular_videos-widget">
@@ -72,47 +119,13 @@
        <div class="tab-content" id="pills-tabContent">
          <div class="tab-pane fade" id="tuan" role="tabpanel" aria-labelledby="pills-home-tab">
             <div id="halim-ajax-popular-post" class="popular-post">
-
                <span id="show_data">
 
                </span>
-         
-
-               {{-- <div class="item post-37176">
-                  <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
-                     <div class="item-link">
-                        <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798" class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
-                        <span class="is_trailer">Trailer</span>
-                     </div>
-                     <p class="title">CHỊ MƯỜI BA: BA NGÀY SINH TỬ</p>
-                  </a>
-                  <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                  <div style="float: left;">
-                     <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
-                     <span style="width: 0%"></span>
-                     </span>
-                  </div>
-               </div> --}}
             </div>
          </div>
-
-         {{-- <div class="tab-pane fade" id="tuan" role="tabpanel" aria-labelledby="pills-profile-tab">
-            <div id="halim-ajax-popular-post" class="popular-post">
-               <span id="show1">
-
-               </span>
-            </div>
-         </div>
-
-         <div class="tab-pane fade" id="thang" role="tabpanel" aria-labelledby="pills-contact-tab">
-            <div id="halim-ajax-popular-post" class="popular-post">
-               <span id="show2">
-
-               </span>
-            </div>
-         </div>
-       </div> --}}
 
       <div class="clearfix"></div>
    </div>
 </aside>
+

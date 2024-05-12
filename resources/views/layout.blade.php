@@ -172,6 +172,15 @@
       <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js') }}' id='halim-init-js'></script>
       
       <script type="text/javascript">
+         $(".watch_trailer").click(function(e){
+            e.preventDefault();
+            var aid = $(this).attr("href");
+            $('html, body').animate({scrollTop: $(aid).offset().top}, 'slow');
+         });
+      </script>
+
+
+      <script type="text/javascript">
          $(document).ready(function(){
              // AJAX request to filter-topview-default endpoint
              $.ajax({
