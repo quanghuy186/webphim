@@ -138,6 +138,14 @@
                @endforeach
                <div class="clearfix"></div>
             </main>
+
+            <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
+               <div class="section-bar clearfix">
+                  <h3 class="section-title"><span>BÌNH LUẬN</span></h3>
+               </div>
+               <div class="fb-comments" data-href="http://127.0.0.1:8000/phim/john-wick-phan-4" data-width="100%" data-numposts="10"></div>
+               <div class="clearfix"></div>
+            </main>
             {{-- sidebar --}}
             @include('pages/include/sidebar')
          </div> 
