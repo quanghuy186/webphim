@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Models\Genre;
+use Illuminate\Support\Facades\File;
 
 class MovieController extends Controller
 {
@@ -15,6 +16,12 @@ class MovieController extends Controller
     public function index()
     {
         $list = Movie::with('category', 'genre', 'country')->orderBy('id', 'desc')->get();
+        $path = public_path()."/json/";
+        if(!is_dir($path)){
+            mkdir($path, 0777, true);
+        }
+        File::put($path."movies.json",json_encode($list));
+        
         return view('admin.movie.index', compact('list'));
     }
 

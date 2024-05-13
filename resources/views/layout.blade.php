@@ -48,15 +48,17 @@
                <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
                   <div class="header-nav">
                      <div class="col-xs-12">
-                        <form id="search-form-pc" name="halimForm" role="search" action="" method="GET">
-                           <div class="form-group">
+
+                        {{-- search  --}}
+                           <div class="form-group form-timkiem">
                               <div class="input-group col-xs-12">
-                                 <input id="search" type="text" name="s" class="form-control" placeholder="Tìm kiếm..." autocomplete="off" required>
-                                 <i class="animate-spin hl-spin4 hidden"></i>
+                                 <input id="timkiem" type="text" name="search" class="form-control" placeholder="Tìm kiếm..." autocomplete="off">
                               </div>
                            </div>
-                        </form>
-                        <ul class="ui-autocomplete ajax-results hidden"></ul>
+ 
+                        <ul class="list-group" id="result" style="display: none">
+
+                        </ul>
                      </div>
                   </div>
                </div>
@@ -175,7 +177,31 @@
       <script type='text/javascript' src='{{ asset('js/owl.carousel.min.js') }}' id='carousel-js'></script>
       <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js') }}' id='halim-init-js'></script>
 
-     
+      <script type="text/javascript">
+        $(document).ready(function(){
+         $('#timkiem').keyup(function(){
+            $('#result').html('');
+            var search = $('#timkiem').val();
+            if(search!=''){
+                  var expression = new RegExp(search, "i");
+                  $.getJSON('/json/movies.json', function(data){
+                     $.each(data, function(key, value){
+                        if(value.title.search(expression) != -1){
+                              $('#result').append('<li class="list-group-item" style="cursor:pointer"><img height="40" width="40" src="uploads/movie/'+value.image+'">'+value.title+'<br/> | <span>'+value.description+'</span></li>');
+                        }
+                     });
+                  });
+            }
+         });
+
+            $('#result').on('click', 'li', function(){
+               var check_text = $(this).find('span').text().split('|');
+               $('#timkiem').val($.trim(check_text[0]));
+               $('#result').html('');
+            });
+         });
+
+      </script>
       
       <script type="text/javascript">
          $(".watch_trailer").click(function(e){

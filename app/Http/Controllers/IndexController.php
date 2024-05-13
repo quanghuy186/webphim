@@ -33,8 +33,6 @@ class IndexController extends Controller
         return view('pages.category', compact('categories', 'genres', 'countries', 'cate_slug', 'movie', 'movie_hot_sidebar', 'hot_trailer'));
     } 
 
-   
-
     public function year($year){
         $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
         $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take(15)->get();

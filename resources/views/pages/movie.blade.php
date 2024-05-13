@@ -122,7 +122,6 @@
             </div>
 
             {{-- trailer phim --}}
-
             <div class="section-bar clearfix">
                <h2 class="section-title"><span style="color:#ffed4d">Trailer</span></h2>
             </div>
@@ -140,13 +139,10 @@
             @else
                 <p>Chưa có trailer phim</p>
             @endif
-            
-
          </div>
       </section>
 
       {{-- relation ship --}}
-
       <section class="related-movies">
          <div id="halim_related_movies-2xx" class="wrap-slider">
             <div class="section-bar clearfix">
