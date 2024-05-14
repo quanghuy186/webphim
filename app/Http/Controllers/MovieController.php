@@ -13,17 +13,22 @@ class MovieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $list = Movie::with('category', 'genre', 'country')->orderBy('id', 'desc')->get();
-        $path = public_path()."/json/";
-        if(!is_dir($path)){
-            mkdir($path, 0777, true);
+        public function index()
+        {
+            $list = Movie::with('category', 'genre', 'country')->orderBy('id', 'desc')->get();
+            $path = public_path() . "/json/";
+
+            // Kiểm tra và tạo thư mục nếu chưa tồn tại
+            if (!is_dir($path)) {
+                mkdir($path, 0777, true);
+            }
+
+            // Ghi dữ liệu vào tệp JSON
+            File::put($path . "movies.json", json_encode($list));
+
+            return view('admin.movie.index', compact('list'));
         }
-        File::put($path."movies.json",json_encode($list));
-        
-        return view('admin.movie.index', compact('list'));
-    }
+
 
     public function update_year(Request $request){
         $data = $request->all();

@@ -48,17 +48,26 @@
                <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
                   <div class="header-nav">
                      <div class="col-xs-12">
-
+                        <style type="text/css">
+                           ul#result{
+                              position: absolute;
+                              z-index: 99999;
+                              background: #1b2d3c;
+                              width: 94%;
+                              padding: 10px;
+                              margin: 1px;
+                           }
+                        </style>
                         {{-- search  --}}
                            <div class="form-group form-timkiem">
                               <div class="input-group col-xs-12">
-                                 <input id="timkiem" type="text" name="search" class="form-control" placeholder="Tìm kiếm..." autocomplete="off">
+                                 <input id="timkiem" type="text" name="timkiem" class="form-control" placeholder="Tìm kiếm..." autocomplete="off">
+                                 
                               </div>
-                           </div>
- 
-                        <ul class="list-group" id="result" style="display: none">
+                              <ul class="list-group" id="result" style="none">
 
-                        </ul>
+                              </ul>
+                           </div>
                      </div>
                   </div>
                </div>
@@ -178,30 +187,39 @@
       <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js') }}' id='halim-init-js'></script>
 
       <script type="text/javascript">
-        $(document).ready(function(){
-         $('#timkiem').keyup(function(){
-            $('#result').html('');
-            var search = $('#timkiem').val();
-            if(search!=''){
-                  var expression = new RegExp(search, "i");
-                  $.getJSON('/json/movies.json', function(data){
-                     $.each(data, function(key, value){
-                        if(value.title.search(expression) != -1){
-                              $('#result').append('<li class="list-group-item" style="cursor:pointer"><img height="40" width="40" src="uploads/movie/'+value.image+'">'+value.title+'<br/> | <span>'+value.description+'</span></li>');
-                        }
+         $(document).ready(function(){
+             // Xử lý sự kiện keyup cho ô tìm kiếm
+             $('#timkiem').keyup(function(){
+                 $('#result').html(''); // Xóa kết quả cũ
+                 var search = $('#timkiem').val(); // Lấy giá trị tìm kiếm
+                 if(search != ''){
+                     $('#result').css('display', 'inherit');
+                     var expression = new RegExp(search, "i"); // Tạo biểu thức chính quy
+                     // Gửi yêu cầu lấy dữ liệu từ file JSON
+                     $.getJSON('/json/movies.json', function(data){
+                         $.each(data, function(key, value){
+                             if(value.title.search(expression) != -1){
+                                 // Thêm kết quả vào danh sách
+                                 $('#result').append('<li class="list-group-item" style="cursor:pointer"><img height="40" width="40" src="uploads/movie/'+value.image+'"> '+value.title+'<br/> | <span>'+value.description+'</span></li>');
+                             }
+                         });
                      });
-                  });
-            }
+                 }else{
+                   $('#result').css('display', 'none');
+                 }
+             });
+     
+             // Xử lý sự kiện click trên kết quả tìm kiếm
+             $('#result').on('click', 'li', function(){
+                  $('#result').css('display', 'none');
+                  // $('#result').css('display', 'none');
+                 var check_text = $(this).find('span').text().split('|');
+                 $('#timkiem').val($.trim(check_text[0])); // Đặt giá trị tìm kiếm vào ô tìm kiếm
+                 $('#result').html(''); // Xóa kết quả
+             });
          });
-
-            $('#result').on('click', 'li', function(){
-               var check_text = $(this).find('span').text().split('|');
-               $('#timkiem').val($.trim(check_text[0]));
-               $('#result').html('');
-            });
-         });
-
-      </script>
+     </script>
+     
       
       <script type="text/javascript">
          $(".watch_trailer").click(function(e){
