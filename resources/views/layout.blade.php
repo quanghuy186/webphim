@@ -60,13 +60,15 @@
                         </style>
                         {{-- search  --}}
                            <div class="form-group form-timkiem">
-                              <div class="input-group col-xs-12">
-                                 <input id="timkiem" type="text" name="timkiem" class="form-control" placeholder="Tìm kiếm..." autocomplete="off">
-                                 
-                              </div>
-                              <ul class="list-group" id="result" style="none">
+                                 <div class="input-group col-xs-12">
+                                    <form action="{{ route('search') }}" method="GET">
+                                       <input id="timkiem" type="text" name="search" class="form-control" placeholder="Tìm kiếm..." autocomplete="off">
+                                       <button class="btn btn-primary">Tìm kiếm</button>
+                                    </form>
+                                 </div>
+                                 <ul class="list-group" id="result"  style="display:none">
 
-                              </ul>
+                                 </ul>
                            </div>
                      </div>
                   </div>
@@ -228,7 +230,6 @@
             $('html, body').animate({scrollTop: $(aid).offset().top}, 'slow');
          });
       </script>
-
 
       <script type="text/javascript">
          $(document).ready(function(){

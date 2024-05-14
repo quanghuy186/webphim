@@ -55,6 +55,21 @@ class IndexController extends Controller
         return view('pages.tag', compact('categories', 'genres', 'countries', 'tag', 'movie', 'movie_hot_sidebar', 'hot_trailer'));
     } 
 
+    public function search(){
+        if(isset($_GET['search'])){
+            $search = $_GET['search'];
+            $categories = Category::orderBy('id', 'desc')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
+            $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take(15)->get();
+            $hot_trailer = Movie::where('resolution', 4)->where('status', 1)->orderBy('updated_at', 'DESC')->take(4)->get();
+            $genres = Genre::orderBy('id', 'desc')->get();
+            $countries = Country::orderBy('id', 'desc')->get();
+            $movie = Movie::where('title', 'LIKE', '%'.$search.'%')->paginate(40);
+            return view('pages.search', compact('categories', 'genres', 'countries', 'search', 'movie', 'movie_hot_sidebar', 'hot_trailer'));
+        }else{
+            return redirect()->to('/');
+        }
+    }
+
     public function genre($slug){
         $categories = Category::orderBy('id', 'desc')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
         $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take(15)->get();

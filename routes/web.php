@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MovieController;
+use Illuminate\Routing\Router;
 
 Route::get('/', [IndexController::class, 'home'])->name('homepage');
 Route::get('/danh-muc/{slug}', [IndexController::class, 'category'])->name('category');
@@ -22,6 +23,7 @@ Route::get('/update-topview-phim', [MovieController::class, 'topview']);
 Route::post('/filter-topview-phim', [MovieController::class, 'filter_topview']);
 Route::get('/filter-topview-default', [MovieController::class, 'filter_default']);
 Route::get('/update-season-phim', [MovieController::class, 'update_season']);
+Route::get('/search', [IndexController::class, 'search'])->name('search');
 
 Auth::routes();
 
