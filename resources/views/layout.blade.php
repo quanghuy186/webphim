@@ -213,11 +213,10 @@
      
              // Xử lý sự kiện click trên kết quả tìm kiếm
              $('#result').on('click', 'li', function(){
-                  $('#result').css('display', 'none');
-                  // $('#result').css('display', 'none');
-                 var check_text = $(this).find('span').text().split('|');
-                 $('#timkiem').val($.trim(check_text[0])); // Đặt giá trị tìm kiếm vào ô tìm kiếm
-                 $('#result').html(''); // Xóa kết quả
+                var check_text = $(this).text().split('|');
+                $('#timkiem').val($.trim(check_text[0])); // Đặt giá trị tìm kiếm vào ô tìm kiếm
+                $('#result').html(''); // Xóa kết quả
+                $('#result').css('display', 'none');
              });
          });
      </script>
