@@ -13,7 +13,7 @@ class MovieController extends Controller
     /**
      * Display a listing of the resource.
      */
-        public function index()
+    public function index()
         {
             $list = Movie::with('category', 'genre', 'country')->orderBy('id', 'desc')->get();
             $path = public_path() . "/json/";
@@ -27,7 +27,7 @@ class MovieController extends Controller
             File::put($path . "movies.json", json_encode($list));
 
             return view('admin.movie.index', compact('list'));
-        }
+    }    
 
 
     public function update_year(Request $request){
@@ -88,7 +88,6 @@ class MovieController extends Controller
         }
         echo $output;
     }
-
     
     public function filter_default(Request $request){
         $data = $request->all();
@@ -128,7 +127,6 @@ class MovieController extends Controller
         echo $output;
     }
 
-
     /**
      * Show the form for creating a new resource.
      */
@@ -160,7 +158,10 @@ class MovieController extends Controller
         $movie->vietsub = $data['vietsub'];
         $movie->category_id = $data['category_id'];
         $movie->movie_hot = $data['movie_hot'];
-        $movie->genre_id = $data['genre_id'];
+        // $movie->genre_id = $data['genre_id'];
+        foreach($data['genre'] as $key => $gen){
+            $movie->genre_id = $gen[0];
+        }
         $movie->country_id = $data['country_id'];
         
         $get_image = $request->file('image');
@@ -190,7 +191,7 @@ class MovieController extends Controller
      */
     public function edit(string $id)
     {
-         $list = Movie::with('category', 'genre', 'country')->orderBy('id', 'desc')->get();
+        $list = Movie::with('category', 'genre', 'country')->orderBy('id', 'desc')->get();
         $categories = Category::all();
         $genres = Genre::all();
         $countries = Country::all();
@@ -217,7 +218,9 @@ class MovieController extends Controller
         $movie->vietsub = $data['vietsub'];
         $movie->category_id = $data['category_id'];
         $movie->movie_hot = $data['movie_hot'];
-        $movie->genre_id = $data['genre_id'];
+        foreach($data['genre'] as $key => $gen){
+            $movie->genre_id = $gen[0];
+        }
         $movie->country_id = $data['country_id'];
 
         $get_image = $request->file('image');

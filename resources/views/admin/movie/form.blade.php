@@ -162,14 +162,28 @@
                                 @endif
                             </select>
                         </div>
+
+                        {{-- the loai --}}
                         
                         <div class="form-group">
                             <label for="genre_id" class="form-label">Thể loại</label>
-                            <select name="genre_id" id="genre_id" class="form-control">
+                            {{-- <select name="genre_id" id="genre_id" class="form-control"> --}}
                                 @foreach ($genres as $genre)
-                                    <option value="{{ $genre->id }}" @if(isset($movies) && $movies->genre_id == $genre->id) selected @endif>{{ $genre->title }}</option>
+                                <br>
+                                {{-- <input type="checkbox" name="genre[]" value="{{ $genre->id }}" @if($movies->id == $genre->id) checked @endif id=""> --}}
+
+                                <input type="checkbox" name="genre[]" value="{{ $genre->id }}" 
+                                    @isset($movies)
+                                        @if($movies->genre_id == $genre->id) checked @endif
+                                    @endisset id="">
+
+                                    {{-- <input type="checkbox" name="genre[]" value="{{ $genre->id }}" @if($genre->movie->id == $genre->id) checked @endif> --}}
+                                {{-- <input type="checkbox" name="genre[]" value="{{ $genre->id }}" @if($movies->id == $genre->id) checked @endif> --}}
+                                {{-- <input type="checkbox" name="genre[]" value="{{ $genre->id }}"> --}}
+                                <label for="genre" class="form-lable">{{ $genre->title }}</label>
+                                    {{-- <option value="{{ $genre->id }}" @if(isset($movies) && $movies->genre_id == $genre->id) selected @endif>{{ $genre->title }}</option> --}}
                                 @endforeach
-                            </select>
+                            {{-- </select> --}}
                         </div>
                         
                         <div class="form-group">

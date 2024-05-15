@@ -16,9 +16,9 @@
                     <th scope="col">Thời lượng</th>
                     <th scope="col">Độ phân giải</th>
                     <th scope="col">Danh mục</th>
+                    <th scope="col">Phụ đề</th>
                     <th scope="col">Phim hot</th>
                     <th scope="col">Thể loại</th>
-                    <th scope="col">Phụ đề</th>
                     <th scope="col">Quốc gia</th>
                     <th scope="col">Top view</th>
                     <th scope="col">Season</th>
