@@ -14,21 +14,18 @@ class MovieController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-        {
-            $list = Movie::with('category', 'genre', 'country')->orderBy('id', 'desc')->get();
-            $path = public_path() . "/json/";
-
+    {
+        $list = Movie::with('category', 'movie_genre', 'country','genre')->orderBy('updated_at', 'DESC')->get();
+        $path = public_path() . "/json/";
             // Kiểm tra và tạo thư mục nếu chưa tồn tại
-            if (!is_dir($path)) {
-                mkdir($path, 0777, true);
-            }
-
+        if (!is_dir($path)) {
+            mkdir($path, 0777, true);
+        }
             // Ghi dữ liệu vào tệp JSON
-            File::put($path . "movies.json", json_encode($list));
+         File::put($path . "movies.json", json_encode($list));
 
-            return view('admin.movie.index', compact('list'));
+        return view('admin.movie.index', compact('list'));    
     }    
-
 
     public function update_year(Request $request){
         $data = $request->all();
@@ -175,6 +172,9 @@ class MovieController extends Controller
         }
 
         $movie->save();
+
+        //atrach có chức năng đính kèm dữ liệu
+        $movie->movie_genre()->attach($data['genre']);
         return redirect()->back();
     }
 
@@ -236,8 +236,8 @@ class MovieController extends Controller
                 $movie->image = $new_image;
             }
         }
-
-        $movie->update();
+        $movie->save();
+        $movie->movie_genre()->sync($data['genre']);
         return redirect()->back();
     }
 

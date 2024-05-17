@@ -63,8 +63,7 @@
                                         <option value="1">SD</option>
                                         <option value="2">HDCam</option>
                                         <option value="3">FullHD</option>
-                                    <option value="4">Trailer</option>
-
+                                        <option value="4">Trailer</option>
                                     @elseif($movies->resolution === 1)
                                         <option value="0">HD</option>
                                         <option selected value="1">SD</option>
@@ -171,7 +170,6 @@
                                 @foreach ($genres as $genre)
                                 <br>
                                 {{-- <input type="checkbox" name="genre[]" value="{{ $genre->id }}" @if($movies->id == $genre->id) checked @endif id=""> --}}
-
                                 <input type="checkbox" name="genre[]" value="{{ $genre->id }}" 
                                     @isset($movies)
                                         @if($movies->genre_id == $genre->id) checked @endif

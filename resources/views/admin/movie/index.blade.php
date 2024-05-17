@@ -53,7 +53,6 @@
                             @endif
                             {{-- the loai phim --}}
                             <td>{{ $movie->category->title }}</td>
-
                             {{-- phu de --}}
                             @if ($movie->vietsub == 1)
                                 <td>Phụ đề</td>
@@ -67,7 +66,11 @@
                             @else
                                  <td>Không hot</td>
                             @endif    
-                            <td>{{ $movie->genre->title }}</td>
+                            <td>  
+                                @foreach ($movie->movie_genre as $gen)
+                                    {{ $gen->cftitle }}
+                                @endforeach
+                            </td>
                             <td>{{ $movie->country->title }}</td>
 
                             {{-- top view --}}
@@ -151,7 +154,7 @@
                                         </button>
                                         </div>
                                         <div class="modal-body">
-                                        Bạn có chắc chắn muốn xóa không ?
+                                        Bạn có chắc chắn muốn xóa phim {{ $movie->title }} không ?
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
