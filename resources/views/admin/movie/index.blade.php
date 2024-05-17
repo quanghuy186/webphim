@@ -68,7 +68,7 @@
                             @endif    
                             <td>  
                                 @foreach ($movie->movie_genre as $gen)
-                                    {{ $gen->cftitle }}
+                                  <span>{{ $gen->title }} </span>  
                                 @endforeach
                             </td>
                             <td>{{ $movie->country->title }}</td>

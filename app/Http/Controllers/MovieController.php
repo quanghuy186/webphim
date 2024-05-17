@@ -23,7 +23,6 @@ class MovieController extends Controller
         }
             // Ghi dữ liệu vào tệp JSON
          File::put($path . "movies.json", json_encode($list));
-
         return view('admin.movie.index', compact('list'));    
     }    
 
@@ -196,7 +195,8 @@ class MovieController extends Controller
         $genres = Genre::all();
         $countries = Country::all();
         $movies = Movie::find($id);
-        return view('admin.movie.form', compact('list', 'categories', 'genres', 'countries', 'movies'));
+        $movie_genre = $movies->movie_genre;
+        return view('admin.movie.form', compact('list', 'categories', 'genres', 'countries', 'movies', 'movie_genre'));
     }
 
     /**
