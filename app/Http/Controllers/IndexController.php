@@ -6,8 +6,11 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
+use App\Models\Movie_Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use function Laravel\Prompts\select;
 
 class IndexController extends Controller
 {
@@ -73,11 +76,17 @@ class IndexController extends Controller
     public function genre($slug){
         $categories = Category::orderBy('id', 'desc')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
         $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take(15)->get();
-        $hot_trailer = Movie::where('resolution', 4)->where('status', 1)->orderBy('updated_at', 'DESC')->take(4)->get();
+        $hot_trailer = Movie::where('resolution', 4)->where('status', 1)->orderBy('updated_at', 'DESC')->take(10)->get();
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
         $genre_slug = Genre::where('slug', $slug)->first(); 
-        $movie = Movie::where('genre_id', $genre_slug->id)->paginate(2);
+        //lay ra nhieu the loai
+        $movie_genre = Movie_Genre::where('genre_id', $genre_slug->id)->get();
+        $movie_gen = [];
+        foreach ($movie_genre as $movi) {
+            $movie_gen[] = $movi->movie_id;
+        }
+        $movie = Movie::whereIn('id',$movie_gen)->paginate(12);
         return view('pages.genre', compact('categories', 'genres', 'countries', 'genre_slug', 'movie', 'movie_hot_sidebar', 'hot_trailer'));
     } 
     
