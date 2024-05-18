@@ -145,6 +145,7 @@ class MovieController extends Controller
         $data = $request->all();
         $movie->title = $data['title'];
         $movie->trailer = $data['trailer'];
+        $movie->sotap = $data['sotap'];
         $movie->name_eng = $data['name_eng'];
         $movie->description = $data['description'];
         $movie->tags = $data['tags'];
@@ -209,6 +210,7 @@ class MovieController extends Controller
         $movie = Movie::find($id);
         $movie->title = $data['title'];
         $movie->trailer = $data['trailer'];
+        $movie->sotap = $data['sotap'];
         $movie->name_eng = $data['name_eng'];
         $movie->description = $data['description'];
         $movie->tags = $data['tags'];

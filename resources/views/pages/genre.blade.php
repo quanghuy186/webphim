@@ -40,15 +40,9 @@
                         @endif        
                      </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                         @if ($mov->vietsub == 1)
-                            Phụ đề
-                              @if ($mov->season != 0)
-                                 - Season : {{ $mov->season }}
-                              @endif
+                            Phụ đề - Tập:1/{{ $mov->sotap }}
                         @else
-                           Thuyết minh
-                              @if ($mov->season != 0)
-                                 - Season : {{ $mov->season }}
-                              @endif
+                           Thuyết minh - Tập:1/{{ $mov->sotap }}
                         @endif  
                      </span> 
                      <div class="icon_overlay"></div>

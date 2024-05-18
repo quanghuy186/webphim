@@ -11,6 +11,7 @@
                     <th scope="col">Tiêu đề</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Trailer</th>
+                    <th scope="col">Số tập</th>
                     {{-- <th scope="col">Mô tả</th> --}}
                     <th scope="col">Trạng thái</th>
                     <th scope="col">Thời lượng</th>
@@ -33,6 +34,7 @@
                             <th scope="row">{{ $movie->title }}</th>
                             <td>{{ $movie->slug }}</td>
                             <th scope="row">{{ $movie->trailer }}</th>
+                            <th scope="row">{{ $movie->sotap }}</th>
                             {{-- {{Trạng thái}} --}}
                             @if ($movie->status === 1)
                                 <td>Hiển thị</td>

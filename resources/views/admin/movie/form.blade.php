@@ -30,6 +30,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="trailer" class="form-lable">Số tập phim</label>
+                            <input value="{{ isset($movies) ? $movies->sotap : '' }}" class="form-control" type="text" name="sotap" placeholder="Nhập số tập phim">
+                        </div>
+
+                        <div class="form-group">
                             <label for="name_eng" class="form-lable">Tên tiếng anh</label>
                             <input value="{{ isset($movies) ? $movies->name_eng : '' }}" class="form-control" type="text" name="name_eng" placeholder="Nhập tên tiếng anh">
                         </div>

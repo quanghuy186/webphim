@@ -6,7 +6,16 @@
       <div class="panel-heading">
          <div class="row">
             <div class="col-xs-6">
-               <div class="yoast_breadcrumb hidden-xs"><span><span><a href="{{ route('category', $movie->category->slug) }}">{{ $movie->category->title }}</a> » <span><a href="{{ route('country', $movie->country->slug) }}">{{ $movie->country->title }}</a> » <span class="breadcrumb_last" aria-current="page">{{ $movie->title }}</span></span></span></span></div>
+               <div class="yoast_breadcrumb hidden-xs"><span><span><a href="{{ route('category', $movie->category->slug) }}">{{ $movie->category->title }}</a> » <span><a href="{{ route('country', $movie->country->slug) }}">{{ $movie->country->title }}</a> » 
+                  <span class="breadcrumb_last" aria-current="page">@foreach ($movie->movie_genre as $gen)
+                     <a href="{{ route('genre', $gen->slug) }}" rel="category tag">
+                        {{ $gen->title }} 
+                     </a>
+                     »
+                  @endforeach</span></span></span></span>
+                  <span>{{ $movie->title }}</span>
+               </div>
+
             </div>
          </div>
       </div>
@@ -60,11 +69,10 @@
                      </span><span class="episode">Vietsub</span></li>
                         <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
                         <li class="list-info-group-item"><span>Thời lượng</span> : {{ $movie->time }}</li>
-
+                        <li class="list-info-group-item"><span>Số tập</span> : {{ $movie->sotap }}/{{ $movie->sotap }} - Hoàn thành</li>
                         <li class="list-info-group-item"><span>Thể loại</span> : 
                            @foreach ($movie->movie_genre as $gen)
                               <a href="{{ route('genre', $gen->slug) }}" rel="category tag">
-                                 {{-- {{ $movie->genre->title }} --}}
                                  {{ $gen->title }}
                               </a>
                            @endforeach
