@@ -111,7 +111,7 @@ class IndexController extends Controller
         $hot_trailer = Movie::where('resolution', 4)->where('status', 1)->orderBy('updated_at', 'DESC')->take(4)->get();
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
-        $movie = Movie::with('category', 'genre', 'country')->where('slug', $slug)->where('status', 1)->first();
+        $movie = Movie::with('category', 'genre', 'country', 'movie_genre')->where('slug', $slug)->where('status', 1)->first();
         $movie_related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug', [$slug])->get();
         return view('pages.movie', compact('genres', 'countries', 'categories', 'movie', 'movie_related', 'movie_hot_sidebar', 'hot_trailer'));
     }

@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Models\Genre;
+use App\Models\Movie_Genre;
 use Illuminate\Support\Facades\File;
 
 class MovieController extends Controller
@@ -247,9 +248,11 @@ class MovieController extends Controller
     public function destroy(string $id)
     {
         $movie = Movie::find($id);
-        if(file_exists('uploads/movie/'. $movie->image)){
-            unlink('uploads/movie/'. $movie->image);
+        if(file_exists('uploads/movie/'.$movie->image)){
+            unlink('uploads/movie/'.$movie->image);
         }
+        //xoa nhieu the loai
+        Movie_Genre::whereIn('movie_id', [$movie->id])->delete();
         $movie->delete();
         return redirect()->back();
     }

@@ -98,7 +98,7 @@
                                         </button>
                                         </div>
                                         <div class="modal-body">
-                                        Bạn có chắc chắn muốn xóa không ?
+                                        Bạn có chắc chắn muốn xóa {{ $country->title }} không ?
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>

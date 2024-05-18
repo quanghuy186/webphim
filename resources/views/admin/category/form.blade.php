@@ -61,11 +61,8 @@
                 </div>
             </div>
         </div>
-
             <table class="table table-bordered mt-3">
-              
                 <thead>
-                    
                   <tr>
                     <th scope="col">Tiêu đề</th>
                     <th scope="col">Mô tả</th>
@@ -87,32 +84,36 @@
                             @endif
                             <td>
                             <a class="btn btn-danger" href="{{ route('category.edit', $category->id) }}">Sửa</a>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            <!-- Nút mở modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $category->id }}">
                                 Xóa
                             </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{ $category->id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $category->id }}" aria-hidden="true">
+                                <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận xóa ?</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                            <h5 class="modal-title" id="exampleModalLabel{{ $category->id }}">Xác nhận xóa?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
-                                        Bạn có chắc chắn muốn xóa không ?
+                                            Bạn có chắc chắn muốn xóa {{ $category->title }} {{ $category->id }} không?
                                         </div>
                                         <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                        <form action="{{ route('category.destroy', $category->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-secondary" type="submit">Xóa</button>
-                                        </form>   
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            <form action="{{ route('category.destroy', $category->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">Xóa</button>
+                                            </form>
                                         </div>
                                     </div>
-                                    </div>
                                 </div>
+                            </div>
+
                             </td>
                         </tr>
                     @endforeach
