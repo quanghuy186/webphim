@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Episode;
+use App\Models\Movie;
 use Illuminate\Http\Request;
+
+use function Laravel\Prompts\alert;
 
 class EpisodeController extends Controller
 {
@@ -19,7 +23,8 @@ class EpisodeController extends Controller
      */
     public function create()
     {
-        //
+        $list_movie = Movie::orderBy('id', 'DESC')->get();
+        return view('admin.episode.form', compact('list_movie'));
     }
 
     /**
@@ -60,5 +65,14 @@ class EpisodeController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function select_movie(){
+        $select_movie = Movie::find($_GET['id']);
+        $output = "<option>Chọn tập phim</option>";
+        for($i = 1; $i <= $select_movie->sotap; $i++){
+            $output .= '<option value="'.$i.'">'.$i.'</option>';
+        }
+        echo $output;
     }
 }

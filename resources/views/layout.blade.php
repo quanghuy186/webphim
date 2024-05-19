@@ -40,7 +40,6 @@
          .entry-content.htmlwrap.clearfix{
             background: #ffff;
          }
-
       </style>
       <style>#header .site-title {background: url(https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png) no-repeat top left;background-size: contain;text-indent: -9999px;}</style>
    </head>
@@ -228,6 +227,7 @@
          });
      </script>
      
+    
       
       <script type="text/javascript">
          $(".watch_trailer").click(function(e){
@@ -236,7 +236,7 @@
             $('html, body').animate({scrollTop: $(aid).offset().top}, 'slow');
          });
       </script>
-
+   
       <script type="text/javascript">
          $(document).ready(function(){
              // AJAX request to filter-topview-default endpoint

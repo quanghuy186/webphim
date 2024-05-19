@@ -88,6 +88,27 @@
     </div>
 
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('.select_movie').change(function(data) {
+                var id = $(this).val();
+                $.ajax({
+                    url: "{{ route('select-movie') }}",
+                    method: "GET",
+                    data: {
+                        id: id
+                    },
+                    success: function(data) {
+                        $('#episode').html(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Yêu cầu AJAX thất bại:', status, error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
         $('.select-topview').change(function() {
             var topview = $(this).find(':selected').val();
             var id_phim = $(this).attr('id');

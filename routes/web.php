@@ -38,3 +38,4 @@ Route::resource('country', CountryController::class);
 Route::resource('episode', EpisodeController::class);
 Route::resource('movie', MovieController::class);
 Route::resource('genre', GenreController::class);
+Route::get('episode', [EpisodeController::class, 'select_movie'])->name('select-movie');
