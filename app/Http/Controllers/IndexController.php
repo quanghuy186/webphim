@@ -116,7 +116,14 @@ class IndexController extends Controller
         return view('pages.movie', compact('genres', 'countries', 'categories', 'movie', 'movie_related', 'movie_hot_sidebar', 'hot_trailer'));
     }
  
-    public function watch(){
-        return view('pages.watch');
+    public function watch($slug){
+        $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
+        $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take(15)->get();
+        $hot_trailer = Movie::where('resolution', 4)->where('status', 1)->orderBy('updated_at', 'DESC')->take(4)->get();
+        $genres = Genre::orderBy('id', 'desc')->get();
+        $countries = Country::orderBy('id', 'desc')->get();
+
+        $movie = Movie::with('category', 'genre', 'country', 'movie_genre')->where('slug', $slug)->where('status', 1)->first();
+        return view('pages.watch', compact('genres', 'countries', 'categories', 'movie', 'movie_hot_sidebar', 'hot_trailer'));
     }
 }

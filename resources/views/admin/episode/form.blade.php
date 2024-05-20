@@ -40,14 +40,12 @@
 
                         <div class="form-group">
                             <label for="time" class="form-label">Link phim</label>
-                            <input value="{{ isset($episode) ? $episode->linkphim : '' }}" class="form-control" type="text" name="episode" placeholder="....">
+                            <input value="{{ isset($episode) ? $episode->linkphim : '' }}" class="form-control" type="text" name="linkphim" placeholder="....">
                         </div>
 
                         <div class="form-group">
                             <label for="time" class="form-label">Tập phim</label>
-                            <select name="" id="episode" class="form-control">
-                                
-                                
+                            <select name="episode" id="episode" class="form-control">                              
                             </select>
                         </div>
 

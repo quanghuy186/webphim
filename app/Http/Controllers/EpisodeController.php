@@ -32,7 +32,13 @@ class EpisodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $episode = new Episode();
+        $episode->movie_id = $data['select_movie'];
+        $episode->episode = $data['episode'];
+        $episode->linkphim = $data['linkphim'];
+        $episode->save();
+        return redirect()->back();
     }
 
     /**
