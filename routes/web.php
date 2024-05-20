@@ -24,6 +24,7 @@ Route::post('/filter-topview-phim', [MovieController::class, 'filter_topview']);
 Route::get('/filter-topview-default', [MovieController::class, 'filter_default']);
 Route::get('/update-season-phim', [MovieController::class, 'update_season']);
 Route::get('/search', [IndexController::class, 'search'])->name('search');
+Route::get('/so-tap', [IndexController::class, 'episode'])->name('so-tap');
 
 Auth::routes();
 

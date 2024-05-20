@@ -123,7 +123,7 @@ class IndexController extends Controller
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
 
-        $movie = Movie::with('category', 'genre', 'country', 'movie_genre')->where('slug', $slug)->where('status', 1)->first();
+        $movie = Movie::with('category', 'genre', 'country', 'movie_genre', 'episode')->where('slug', $slug)->where('status', 1)->first();
         return view('pages.watch', compact('genres', 'countries', 'categories', 'movie', 'movie_hot_sidebar', 'hot_trailer'));
     }
 }
