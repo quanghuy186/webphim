@@ -4,6 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card mt-3">
+                <a href="{{ route('episode.index') }}" class="btn btn-success">Liệt tập phim</a>
                 <div class="card-header">{{ __('Quản lý phim') }}</div>
                 <div class="card-body">
                     @if (session('status'))

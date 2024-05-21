@@ -10,6 +10,12 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MovieController;
 use Illuminate\Routing\Router;
 
+Route::resource('category', CategoryController::class);
+Route::resource('country', CountryController::class);
+Route::resource('episode', EpisodeController::class);
+Route::resource('movie', MovieController::class);
+Route::resource('genre', GenreController::class);
+
 Route::get('/', [IndexController::class, 'home'])->name('homepage');
 Route::get('/danh-muc/{slug}', [IndexController::class, 'category'])->name('category');
 Route::get('/quoc-gia/{slug}', [IndexController::class, 'country'])->name('country');
@@ -34,10 +40,6 @@ Route::post('resorting', [CategoryController::class, 'resorting'])->name('resort
 Route::get('test', function(){
     return view('pages.test');
 });
-Route::resource('category', CategoryController::class);
-Route::resource('country', CountryController::class);
-Route::resource('episode', EpisodeController::class);
-Route::resource('movie', MovieController::class);
-Route::resource('genre', GenreController::class);
 
-Route::get('episode', [EpisodeController::class, 'select_movie'])->name('select-movie');
+
+Route::get('episodes', [EpisodeController::class, 'select_movie'])->name('select-movie');
