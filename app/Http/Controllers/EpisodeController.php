@@ -55,7 +55,9 @@ class EpisodeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $list_movie = Movie::orderBy('id', 'DESC')->get();
+        $episode = Episode::find($id);
+        return view('admin.episode.form', compact('list_movie', 'episode'));
     }
 
     /**
@@ -63,7 +65,13 @@ class EpisodeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->all();
+        $episode = Episode::find($id);
+        $episode->movie_id = $data['select_movie'];
+        $episode->episode = $data['episode'];
+        $episode->linkphim = $data['linkphim'];
+        $episode->save();
+        return redirect()->route('episode.index');
     }
 
     /**

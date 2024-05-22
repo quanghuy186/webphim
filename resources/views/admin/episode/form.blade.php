@@ -33,7 +33,7 @@
                                 @else
                                     <option>Chọn phim mới nhất</option>
                                     @foreach ($list_movie as $movie)
-                                        <option value="{{ $movie->id }}">{{ $movie->title }}</option>
+                                        <option value="{{ $movie->id }}">{{ isset($episode) ? $movie->title : '' }}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -46,8 +46,10 @@
 
                         <div class="form-group">
                             <label for="time" class="form-label">Tập phim</label>
+                            <input value="{{ isset($episode) ? $episode->episode : '' }}" class="form-control" type="text" name="episode" id="convert_slug" placeholder="Nhập dữ liệu" readonly>
+{{-- 
                             <select name="episode" id="episode" class="form-control">                              
-                            </select>
+                            </select> --}}
                         </div>
 
                         @if (isset($episode))
