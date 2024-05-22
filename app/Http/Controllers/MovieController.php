@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\Episode;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Models\Genre;
@@ -255,6 +256,7 @@ class MovieController extends Controller
         }
         //xoa nhieu the loai
         Movie_Genre::whereIn('movie_id', [$movie->id])->delete();
+        Episode::whereIn('movie_id', [$movie->id])->delete();
         $movie->delete();
         return redirect()->back();
     }

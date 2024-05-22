@@ -22,20 +22,10 @@
                         <div class="form-group">
                             <label for="select_movie" class="form-label">Chọn phim</label>
                             <select name="select_movie" id="select_movie" class="form-control select_movie">
-                                @if (isset($episode->vietsub))
-                                    @if ($episode->vietsub === 1)
-                                        <option selected value="1">Phụ đề</option>
-                                        <option value="0">Thuyết minh</option>
-                                    @else
-                                        <option value="1">Phụ đề</option>
-                                        <option selected value="0">Thuyết minh</option>
-                                    @endif
-                                @else
                                     <option>Chọn phim mới nhất</option>
                                     @foreach ($list_movie as $movie)
-                                        <option value="{{ $movie->id }}">{{ isset($episode) ? $movie->title : '' }}</option>
+                                            <option value="{{ $movie->id }}">{{ $movie->title }}</option>
                                     @endforeach
-                                @endif
                             </select>
                         </div>
 
@@ -46,7 +36,7 @@
 
                         <div class="form-group">
                             <label for="time" class="form-label">Tập phim</label>
-                            <input value="{{ isset($episode) ? $episode->episode : '' }}" class="form-control" type="text" name="episode" id="convert_slug" placeholder="Nhập dữ liệu" readonly>
+                            <input value="{{ isset($episode) ? $episode->episode : '' }}" {{ isset($episode) ? 'readonly' : 'disable' }} class="form-control" type="text" name="episode" id="convert_slug" placeholder="Nhập dữ liệu">
 {{-- 
                             <select name="episode" id="episode" class="form-control">                              
                             </select> --}}
