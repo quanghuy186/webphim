@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\Episode;
 use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Movie_Genre;
@@ -112,18 +113,25 @@ class IndexController extends Controller
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
         $movie = Movie::with('category', 'genre', 'country', 'movie_genre')->where('slug', $slug)->where('status', 1)->first();
+        $episodes = Episode::with('movie')->where('movie_id', $movie->id)->orderBy('episode', 'DESC')->take(3)->get();
         $movie_related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug', [$slug])->get();
-        return view('pages.movie', compact('genres', 'countries', 'categories', 'movie', 'movie_related', 'movie_hot_sidebar', 'hot_trailer'));
+        $episode_first = Episode::with('movie')->where('movie_id', $movie->id)->orderBy('episode', 'ASC')->take(1)->first();
+        return view('pages.movie', compact('genres', 'countries', 'categories', 'movie', 'movie_related', 'movie_hot_sidebar', 'hot_trailer', 'episodes', 'episode_first'));
     }
  
     public function watch($slug){
+        if(isset($_GET['tap-phim'])){
+            $tapphim = $_GET['tap-phim'];
+        }else{
+            $tapphim = 1;
+        }
         $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
         $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take(15)->get();
         $hot_trailer = Movie::where('resolution', 4)->where('status', 1)->orderBy('updated_at', 'DESC')->take(4)->get();
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
-
         $movie = Movie::with('category', 'genre', 'country', 'movie_genre', 'episode')->where('slug', $slug)->where('status', 1)->first();
-        return view('pages.watch', compact('genres', 'countries', 'categories', 'movie', 'movie_hot_sidebar', 'hot_trailer'));
+        $episode = Episode::where('movie_id', $movie->id)->where('episode', $tapphim)->first();
+        return view('pages.watch', compact('genres', 'countries', 'categories', 'movie', 'movie_hot_sidebar', 'hot_trailer', 'episode'));
     }
 }

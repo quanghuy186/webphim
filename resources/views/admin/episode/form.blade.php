@@ -36,10 +36,12 @@
 
                         <div class="form-group">
                             <label for="time" class="form-label">Tập phim</label>
-                            <input value="{{ isset($episode) ? $episode->episode : '' }}" {{ isset($episode) ? 'readonly' : 'disable' }} class="form-control" type="text" name="episode" id="convert_slug" placeholder="Nhập dữ liệu">
-{{-- 
-                            <select name="episode" id="episode" class="form-control">                              
-                            </select> --}}
+                            @if(isset($episode))
+                                <input value="{{ isset($episode) ? $episode->episode : '' }}" {{ isset($episode) ? 'readonly' : 'disable' }} class="form-control" type="text" name="episode" id="convert_slug" placeholder="Nhập dữ liệu">
+                            @else
+                                <select name="episode" id="episode" class="form-control">                              
+                                </select>
+                            @endif
                         </div>
 
                         @if (isset($episode))
