@@ -119,19 +119,25 @@ class IndexController extends Controller
         return view('pages.movie', compact('genres', 'countries', 'categories', 'movie', 'movie_related', 'movie_hot_sidebar', 'hot_trailer', 'episodes', 'episode_first'));
     }
  
-    public function watch($slug){
-        if(isset($_GET['tap-phim'])){
-            $tapphim = $_GET['tap-phim'];
-        }else{
-            $tapphim = 1;
-        }
+    public function watch($slug, $tap){
+        
+
         $categories = Category::orderBy('id', 'desc')->where('status', 1)->get();
         $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take(15)->get();
         $hot_trailer = Movie::where('resolution', 4)->where('status', 1)->orderBy('updated_at', 'DESC')->take(4)->get();
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
         $movie = Movie::with('category', 'genre', 'country', 'movie_genre', 'episode')->where('slug', $slug)->where('status', 1)->first();
-        $episode = Episode::where('movie_id', $movie->id)->where('episode', $tapphim)->first();
-        return view('pages.watch', compact('genres', 'countries', 'categories', 'movie', 'movie_hot_sidebar', 'hot_trailer', 'episode'));
+
+        if(isset($_GET['tap'])){
+            $tapphim = $_GET['tap'];
+            $tapphim = substr($tap, 4,1);
+            $episode = Episode::where('movie_id', $movie->id)->where('episode', $tapphim)->first();
+        }else{
+            $tapphim = 1;
+            $episode = Episode::where('movie_id', $movie->id)->where('episode', $tapphim)->first();
+        }
+
+        return view('pages.watch', compact('tapphim','genres', 'countries', 'categories', 'movie', 'movie_hot_sidebar', 'hot_trailer', 'episode'));
     }
 }

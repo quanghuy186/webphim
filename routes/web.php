@@ -21,7 +21,7 @@ Route::get('/danh-muc/{slug}', [IndexController::class, 'category'])->name('cate
 Route::get('/quoc-gia/{slug}', [IndexController::class, 'country'])->name('country');
 Route::get('/the-loai/{slug}', [IndexController::class, 'genre'])->name('genre');
 Route::get('/phim/{slug}', [IndexController::class, 'movie'])->name('movie');
-Route::get('/xem-phin/{slug}', [IndexController::class, 'watch'])->name('watch');
+Route::get('/xem-phim/{slug}/{tap}', [IndexController::class, 'watch'])->name('watch');
 Route::get('/nam/{year}', [IndexController::class, 'year']);
 Route::get('/tag/{tag}', [IndexController::class, 'tag']);
 Route::get('/update-year-phim', [MovieController::class, 'update_year']);

@@ -18,7 +18,15 @@
       <section id="content" class="test">
          <div class="clearfix wrap-content">
 
-                {!! $episode->linkphim !!}
+            <style>
+              .ifram_phim iframe {
+                  width: 100%;
+                  height: 500px;
+               }
+            </style>
+               <div class="ifram_phim">
+                  {!! $episode->linkphim !!}
+               </div>
 
             <div class="button-watch">
                <ul class="halim-social-plugin col-xs-4 hidden-xs">
@@ -90,8 +98,8 @@
                      <div class="halim-server">
                         <ul class="halim-list-eps">
                            @foreach ($movie->episode as $key => $sotap)
-                              <a href="{{route('so-tap')}}">
-                                 <li class="halim-episode"><span class="ahalim-btn halim-btn-2 {{$key == 0 ? 'active' : ''}} halim-info-1-1 box-shadow" data-post-id="37976" data-server="1" data-episode="1" data-position="first" data-embed="0" data-title="{{$movie->title}}" data-h1="">{{ $sotap->episode }}</span></li>
+                              <a href="{{ url('xem-phim/'.$sotap->movie->slug.'/tap-'.$sotap->episode) }}">
+                                 <li class="halim-episode"><span class="ahalim-btn halim-btn-2 {{$tapphim==$sotap->episode ? 'active' : ''}} halim-info-1-1 box-shadow" data-post-id="37976" data-server="1" data-episode="1" data-position="first" data-embed="0" data-title="{{$movie->title}}" data-h1="">{{ $sotap->episode }}</span></li>
                               </a> 
                            @endforeach
                         </ul>

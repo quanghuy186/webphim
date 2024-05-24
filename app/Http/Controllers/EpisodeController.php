@@ -79,7 +79,9 @@ class EpisodeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $episode = Episode::find($id);
+        $episode->delete();
+        return redirect()->route('episode.index');
     }
 
     public function select_movie(){
