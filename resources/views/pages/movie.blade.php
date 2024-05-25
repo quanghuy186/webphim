@@ -70,7 +70,18 @@
                      </span><span class="episode">Vietsub</span></li>
                         <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
                         <li class="list-info-group-item"><span>Thời lượng</span> : {{ $movie->time }}</li>
-                        <li class="list-info-group-item"><span>Số tập</span> : {{ $movie->sotap }}/{{ $movie->sotap }} - Hoàn thành</li>
+                          
+                           @if ($movie->sotap == 1)
+                                 <li class="list-info-group-item"><span>Số tập</span> :  Phim lẻ
+                           @else
+                               <li class="list-info-group-item"><span>Số tập</span> : {{ $count_episode_movie }}/{{ $movie->sotap }} - 
+                              @if ($count_episode_movie == $movie->sotap)
+                                    Hoàn thành
+                              @else
+                                    Đang cập nhật
+                              @endif
+                           @endif
+                        </li>
                         <li class="list-info-group-item"><span>Thể loại</span> : 
                            @foreach ($movie->movie_genre as $gen)
                               <a href="{{ route('genre', $gen->slug) }}" rel="category tag">
@@ -83,10 +94,17 @@
                         </li>
                         <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{ route('country', $movie->country->slug) }}" rel="tag">{{ $movie->country->title }}</a></li>
                         <li class="list-info-group-item"><span>Season</span> : {{ $movie->season }}</li>
+                        {{-- phim mới nhất  --}}
                         <li class="list-info-group-item"><span>Tập phim mới nhất</span> : 
-                           @foreach ($episodes as $ep)
-                              <a href="{{ url('xem-phim/'.$ep->movie->slug.'/tap-'.$ep->episode) }}">Tập {{ $ep->episode }}</a>
-                           @endforeach
+                           @if ($movie->sotap != 1)
+                              @foreach ($episodes as $ep)
+                                 <a href="{{ url('xem-phim/'.$ep->movie->slug.'/tap-'.$ep->episode) }}">Tập {{ $ep->episode }}</a>
+                              @endforeach
+                           @else
+                              <a href="">HD</a>
+                              -
+                              <a href="">Full HD</a>
+                           @endif
                         </li>
                      </ul>
                      <div class="movie-trailer hidden"></div>
