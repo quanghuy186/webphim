@@ -129,7 +129,7 @@ class IndexController extends Controller
         $genres = Genre::orderBy('id', 'desc')->get();
         $countries = Country::orderBy('id', 'desc')->get();
         $movie = Movie::with('category', 'genre', 'country', 'movie_genre', 'episode')->where('slug', $slug)->where('status', 1)->first();
-
+        $movie_related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug', [$slug])->get();
         if(isset($tap)){
             $tapphim = $tap;
             $tapphim = substr($tap, 4,20);
@@ -140,6 +140,6 @@ class IndexController extends Controller
             $episode = Episode::where('movie_id', $movie->id)->where('episode', $tapphim)->first();
         }
 
-        return view('pages.watch', compact('tapphim','genres', 'countries', 'categories', 'movie', 'movie_hot_sidebar', 'hot_trailer', 'episode'));
+        return view('pages.watch', compact('tapphim','genres', 'countries', 'categories', 'movie', 'movie_hot_sidebar', 'hot_trailer', 'episode', 'movie_related'));
     }
 }

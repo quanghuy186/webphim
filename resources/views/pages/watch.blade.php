@@ -114,32 +114,59 @@
             </div>
       </section>
       <section class="related-movies">
-      <div id="halim_related_movies-2xx" class="wrap-slider">
-      <div class="section-bar clearfix">
-      <h3 class="section-title"><span>CÓ THỂ BẠN MUỐN XEM</span></h3>
-      </div>
-      <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
-      <article class="thumb grid-item post-38494">
-         <div class="halim-item">
-         <a class="halim-thumb" href="chitiet.php" title="Câu Chuyện Kinh Dị Cổ Điển">
-         <figure><img class="lazy img-responsive" src="https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&refresh=604800&url=https://1.bp.blogspot.com/-Hp2tnGf-zNQ/YO68R-yZRcI/AAAAAAAAJqY/Nc9qNCLgBtcjeWjOEIrOW45H5Vvva4xNgCLcBGAsYHQ/s320/MV5BNzE1YjdmMWYtMDk5ZS00YzEzLWE4NjctYmFiZmIwNzU0MjQ5XkEyXkFqcGdeQXVyMTA3MDAxNDcw._V1_.jpg" alt="Câu Chuyện Kinh Dị Cổ Điển" title="Câu Chuyện Kinh Dị Cổ Điển"></figure>
-         <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> <div class="icon_overlay"></div>
-         <div class="halim-post-title-box">
-         <div class="halim-post-title ">
-         <p class="entry-title">Câu Chuyện Kinh Dị Cổ Điển</p><p class="original_title">A Classic Horror Story</p>
+         <div id="halim_related_movies-2xx" class="wrap-slider">
+            <div class="section-bar clearfix">
+               <h3 class="section-title"><span>CÓ THỂ BẠN MUỐN XEM</span></h3>
+            </div>
+            <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
+               @foreach ($movie_related as $related)
+               <article class="thumb grid-item post-38498">
+                  <div class="halim-item">
+                     <a class="halim-thumb" href="{{ route('movie', $related->slug) }}" title="Đại Thánh Vô Song">
+                        <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$related->image) }}" alt="Đại Thánh Vô Song" title="Đại Thánh Vô Song"></figure>
+                        <span class="status">
+                           @if ($movie->resolution == 0)
+                              HD
+                           @elseif($movie->resolution == 1)
+                              SD
+                           @elseif($movie->resolution == 2)
+                              SDCam
+                           @elseif($movie->resolution == 3)
+                              Full HD
+                           @else
+                              Trailer
+                        @endif   
+                        </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                           @if ($movie->vietsub == 1)
+                              Phụ đề
+                              @if ($movie->season != 0)
+                                 - Season : {{ $movie->season }}
+                              @endif
+                           @else
+                              Thuyết minh
+                                 @if ($movie->season != 0)
+                                    - Season : {{ $movie->season }}
+                                 @endif
+                           @endif  
+                        </span> 
+                        <div class="icon_overlay"></div>
+                        <div class="halim-post-title-box">
+                           <div class="halim-post-title ">
+                              <p class="entry-title">{{ $related->title }}</p>
+                              <p class="original_title">{{ $related->name_eng }}</p>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+               </article>
+               @endforeach          
+            </div>
+            <script>
+               jQuery(document).ready(function($) {				
+               var owl = $('#halim_related_movies-2');
+               owl.owlCarousel({loop: true,margin: 4,autoplay: true,autoplayTimeout: 4000,autoplayHoverPause: true,nav: true,navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],responsiveClass: true,responsive: {0: {items:2},480: {items:3}, 600: {items:5},1000: {items: 5}}})});
+            </script>
          </div>
-         </div>
-         </a>
-         </div>
-      </article>     
-     
-      </div>
-      <script>
-         jQuery(document).ready(function($) {				
-         var owl = $('#halim_related_movies-2');
-         owl.owlCarousel({loop: true,margin: 4,autoplay: true,autoplayTimeout: 4000,autoplayHoverPause: true,nav: true,navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],responsiveClass: true,responsive: {0: {items:2},480: {items:3}, 600: {items:4},1000: {items: 4}}})});
-      </script>
-      </div>
       </section>
    </main>
    @include('pages.include.sidebar')
