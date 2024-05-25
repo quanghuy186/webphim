@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
-            $table->string('linkphim', 255);
-            $table->integer('episode');
+            $table->text('linkphim');
+            $table->string('episode');
             $table->timestamps();
         });
     }

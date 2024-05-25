@@ -86,10 +86,17 @@ class EpisodeController extends Controller
 
     public function select_movie(){
         $select_movie = Movie::find($_GET['id']);
-        $output = "<option>Chọn tập phim</option>";
-        for($i = 1; $i <= $select_movie->sotap; $i++){
-            $output .= '<option value="'.$i.'">'.$i.'</option>';
+        if($select_movie->sotap > 1){
+            $output = "<option>Chọn tập phim cho phim bộ</option>";
+            for($i = 1; $i <= $select_movie->sotap; $i++){
+                $output .= '<option value="'.$i.'">'.$i.'</option>';
+            }
+        }else{
+            $output = "<option>Chọn tập cho phim lẻ</option>";
+            $output .= '<option value="HD">HD</option>
+            <option value="FullHD">FullHD</option>';
         }
+        
         echo $output;
     }
 }

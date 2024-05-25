@@ -39,13 +39,15 @@
                   <div class="movie-poster col-md-3">
                      <img class="movie-thumb" src="{{ asset('uploads/movie/' . $movie->image) }}" alt="{{ $movie->title }}">
                      @if ($movie->resolution != 4)
-                        <div class="bwa-content">
-                           <div class="loader"></div>
-                           <a href="{{ url('xem-phim/'.$movie->slug.'/tap-'.$episode_first->episode) }}" class="bwac-btn">
-                           {{-- <a href="{{ route('watch', ['slug' => $movie->slug, 'tap-phim' => $episode_first->episode]) }}" class="bwac-btn"> --}}
-                           <i class="fa fa-play"></i>
-                           </a>
-                        </div>
+                        @if (isset($episode_first->movie))
+                           <div class="bwa-content">
+                              <div class="loader"></div>
+                              <a href="{{ url('xem-phim/'.$movie->slug.'/tap-'.$episode_first->episode) }}" class="bwac-btn">
+                              {{-- <a href="{{ route('watch', ['slug' => $movie->slug, 'tap-phim' => $episode_first->episode]) }}" class="bwac-btn"> --}}
+                              <i class="fa fa-play"></i>
+                              </a>
+                           </div>
+                        @endif
                      @else
                            <a class="btn btn-primary watch_trailer" style="display: block" href="#watch_trailer">Xem trailer</a>
                      @endif
@@ -88,7 +90,6 @@
                                  {{ $gen->title }}
                               </a>
                            @endforeach
-                          
                         </li>
                         <li class="list-info-group-item"><span>Danh mục</span> : <a href="{{ route('category', $movie->category->slug) }}" rel="category tag">{{ $movie->category->title }}</a> 
                         </li>
@@ -97,13 +98,17 @@
                         {{-- phim mới nhất  --}}
                         <li class="list-info-group-item"><span>Tập phim mới nhất</span> : 
                            @if ($movie->sotap != 1)
-                              @foreach ($episodes as $ep)
-                                 <a href="{{ url('xem-phim/'.$ep->movie->slug.'/tap-'.$ep->episode) }}">Tập {{ $ep->episode }}</a>
-                              @endforeach
+                              @if (isset($episode_first->movie))
+                                  @foreach ($episodes as $ep)
+                                    <a href="{{ url('xem-phim/'.$ep->movie->slug.'/tap-'.$ep->episode) }}">Tập {{ $ep->episode }}</a>
+                                 @endforeach
+                              @else
+                                 Đang cập nhật
+                              @endif
                            @else
-                              <a href="">HD</a>
-                              -
-                              <a href="">Full HD</a>
+                              @foreach ($episodes as $ep_sigle)
+                                 <a href="{{ url('xem-phim/'.$ep_sigle->movie->slug.'/tap-'.$ep_sigle->episode) }}">{{ $ep_sigle->episode }}</a>
+                              @endforeach
                            @endif
                         </li>
                      </ul>

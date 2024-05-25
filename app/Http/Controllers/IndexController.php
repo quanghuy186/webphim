@@ -132,7 +132,7 @@ class IndexController extends Controller
 
         if(isset($tap)){
             $tapphim = $tap;
-            $tapphim = substr($tap, 4,1);
+            $tapphim = substr($tap, 4,20);
             $episode = Episode::where('movie_id', $movie->id)->where('episode', $tapphim)->first();
         }else{
             $tapphim = 1;
