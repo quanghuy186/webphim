@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MovieController;
+use App\Models\Episode;
 use Illuminate\Routing\Router;
 
 Route::resource('category', CategoryController::class);
@@ -31,6 +32,8 @@ Route::get('/filter-topview-default', [MovieController::class, 'filter_default']
 Route::get('/update-season-phim', [MovieController::class, 'update_season']);
 Route::get('/search', [IndexController::class, 'search'])->name('search');
 Route::get('/so-tap', [IndexController::class, 'episode'])->name('so-tap');
+
+Route::get('/add_episode/{id}', [EpisodeController::class, 'add_episode'])->name('add_episode');
 
 Auth::routes();
 

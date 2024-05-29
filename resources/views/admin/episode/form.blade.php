@@ -3,8 +3,8 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <a href="{{ route('episode.index') }}" class="btn btn-success">Liệt tập phim</a>
             <div class="card mt-3">
-                <a href="{{ route('episode.index') }}" class="btn btn-success">Liệt tập phim</a>
                 <div class="card-header">{{ __('Quản lý phim') }}</div>
                 <div class="card-body">
                     @if (session('status'))
@@ -20,8 +20,8 @@
                     @endif
                         @csrf
                         <div class="form-group">
-                            <label for="select_movie" class="form-label">Chọn phim</label>
-                            <select name="select_movie" id="select_movie" class="form-control select_movie">
+                            <label for="movie_id" class="form-label">Chọn phim</label>
+                            <select name="movie_id" id="movie_id" class="form-control select_movie">
                                     <option>Chọn phim mới nhất</option>
                                     @foreach ($list_movie as $movie)
                                             <option value="{{ $movie->id }}">{{ $movie->title }}</option>
