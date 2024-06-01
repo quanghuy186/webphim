@@ -28,11 +28,7 @@ class EpisodeController extends Controller
         return view('admin.episode.form', compact('list_movie'));
     }
 
-    public function add_episode($id){
-        $movie = Movie::find($id);
-        $list_episode = Episode::where('movie_id', $id)->with('movie')->orderBy('movie_id', 'desc')->get();
-        return view('admin.episode.add_episode', compact('list_episode', 'movie'));
-    }
+   
     /**
      * Store a newly created resource in storage.
      */
@@ -47,6 +43,11 @@ class EpisodeController extends Controller
         return redirect()->back();
     }
 
+    public function add_episode($id){
+        $movie = Movie::find($id);
+        $list_episode = Episode::where('movie_id', $id)->with('movie')->orderBy('movie_id', 'desc')->get();
+        return view('admin.episode.add_episode', compact('list_episode', 'movie'));
+    }
    
 
     /**
@@ -74,7 +75,7 @@ class EpisodeController extends Controller
     {
         $data = $request->all();
         $episode = Episode::find($id);
-        $episode->movie_id = $data['select_movie'];
+        $episode->movie_id = $data['movie_id'];
         $episode->episode = $data['episode'];
         $episode->linkphim = $data['linkphim'];
         $episode->save();
