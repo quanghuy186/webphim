@@ -35,7 +35,7 @@
                             <th scope="row">{{ $movie->title }}</th>
                             <td>{{ $movie->slug }}</td>
                             <th scope="row">{{ $movie->trailer }}</th>
-                            <th scope="row">{{ $movie->sotap }}</th>
+                            <th scope="row">{{ $movie->episode_count }}/{{ $movie->sotap }}</th>
                             
                             <th scope="row">
                                 <a href="{{ route('add_episode', $movie->id) }}" class="btn btn-danger">

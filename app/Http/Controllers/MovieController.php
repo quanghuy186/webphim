@@ -17,7 +17,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $list = Movie::with('category', 'movie_genre', 'country','genre')->orderBy('updated_at', 'DESC')->get();
+        $list = Movie::with('category', 'movie_genre', 'country','genre')->withCount('episode')->orderBy('updated_at', 'DESC')->get();
         $path = public_path() . "/json/";
             // Kiểm tra và tạo thư mục nếu chưa tồn tại
         if (!is_dir($path)) {
