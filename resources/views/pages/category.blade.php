@@ -42,16 +42,12 @@
                      </span>
                      
                      <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                        Tập {{ $mov->episode_count }}/{{ $mov->sotap }} - 
+
                         @if ($mov->vietsub == 1)
                             Phụ đề
-                              @if ($mov->season != 0)
-                                 - Season : {{ $mov->season }}
-                              @endif
                         @else
                            Thuyết minh
-                              @if ($mov->season != 0)
-                                 - Season : {{ $mov->season }}
-                              @endif
                         @endif     
                      </span> 
                      <div class="icon_overlay"></div>

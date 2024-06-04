@@ -40,6 +40,13 @@
                            Trailer
                         @endif            
                      </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                        Tập {{ $mov->episode_count }}/{{ $mov->sotap }} - 
+                        @if ($mov->vietsub == 1)
+                            Phụ đề 
+                        @else
+                           Thuyết minh
+                        @endif  
+                     </span> 
                             
                      </span> 
                      <div class="icon_overlay"></div>

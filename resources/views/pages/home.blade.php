@@ -60,17 +60,15 @@
                                  Trailer
                               @endif  
                            </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                             Tập {{ $hot->episode_count }}/{{ $hot->sotap }} - 
                               @if ($hot->vietsub == 1)
-                              Phụ đề
-                              @if ($hot->season != 0)
-                                 - Season : {{ $hot->season }}
-                              @endif
-                           @else
-                              Thuyết minh
-                                 @if ($hot->season != 0)
-                                    - Season : {{ $hot->season }}
-                                 @endif
-                           @endif    
+                                  Phụ đề
+                               @else
+                                Thuyết minh
+                                    {{-- @if ($hot->season != 0)
+                                       - Season : {{ $hot->season }}
+                                    @endif --}}
+                              @endif    
                            </span> 
                               <div class="icon_overlay"></div>
                               <div class="halim-post-title-box">
@@ -110,16 +108,17 @@
                                        <td>Full HD</td>
                                     @endif   
                                  </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
-                                    @if ($hot->vietsub == 1)
+                                    Tập {{ $mov->episode_count }}/{{ $mov->sotap }} - 
+                                    @if ($mov->vietsub == 1)
                                        Phụ đề   
-                                          @if ($hot->season != 0)
+                                          {{-- @if ($hot->season != 0)
                                              - Season : {{ $hot->season }}
-                                          @endif
+                                          @endif --}}
                                     @else
                                        Thuyết minh
-                                          @if ($hot->season != 0)
+                                          {{-- @if ($hot->season != 0)
                                              - Season : {{ $hot->season }}
-                                          @endif
+                                          @endif --}}
                                     @endif  
                                  </span> 
                                  <div class="icon_overlay"></div>

@@ -137,16 +137,11 @@
                               Trailer
                         @endif   
                         </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                           Tập {{ $movie->episode_count }}/{{ $movie->sotap }} - 
                            @if ($movie->vietsub == 1)
                               Phụ đề
-                              @if ($movie->season != 0)
-                                 - Season : {{ $movie->season }}
-                              @endif
                            @else
                               Thuyết minh
-                                 @if ($movie->season != 0)
-                                    - Season : {{ $movie->season }}
-                                 @endif
                            @endif  
                         </span> 
                         <div class="icon_overlay"></div>
