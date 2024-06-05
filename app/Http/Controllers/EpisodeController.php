@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Episode;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 use function Laravel\Prompts\alert;
 
@@ -36,10 +37,17 @@ class EpisodeController extends Controller
     {
         $data = $request->all();
         $episode = new Episode();
-        $episode->movie_id = $data['movie_id'];
-        $episode->episode = $data['episode'];
-        $episode->linkphim = $data['linkphim'];
-        $episode->save();
+        $check_episode = Episode::where('movie_id', $data['movie_id'])->where('episode', $data['episode'])->count();
+        if($check_episode > 0){
+            alert('Thêm không thành công do đã tồn tại tập phim này');
+            return redirect()->back();
+        }else{
+            $episode->movie_id = $data['movie_id'];
+            $episode->episode = $data['episode'];
+            $episode->linkphim = $data['linkphim'];
+            $episode->save();
+        }
+        
         return redirect()->back();
     }
 
