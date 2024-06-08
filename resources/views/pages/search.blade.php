@@ -11,6 +11,8 @@
              </div>
           </div>
        </div>
+       @include('pages.include.filter')
+
        <div id="ajax-filter" class="panel-collapse collapse" aria-expanded="true" role="menu">
           <div class="ajax"></div>
        </div>

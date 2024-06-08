@@ -10,11 +10,13 @@
             </div>
          </div>
       </div>
+      
       <div id="ajax-filter" class="panel-collapse collapse" aria-expanded="true" role="menu">
          <div class="ajax"></div>
-      </div>
-   </div>
-   <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
+         </div>
+         </div>
+      <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
+         @include('pages.include.filter')
       <section id="content" class="test">
          <div class="clearfix wrap-content">
 

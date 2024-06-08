@@ -23,60 +23,7 @@
  
           {{-- filter --}}
 
-         <div class="section-bar clearfix">
-            <div class="row">
-               <form action="{{ route('filter') }}" method="GET">
-                  <div class="col-md-2">
-                     <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1" name="order">
-                           <option value="">Sắp xếp</option>
-                           <option name="date">Ngày đăng</option>
-                          <option name="year_release">Năm sản xuất</option>
-                          <option name="name_movie">Tên phim</option>
-                          <option name="watch_views">Lượt xem</option>
-                        </select>
-                     </div>
-                  </div>
-
-                  <div class="col-md-2">
-                     <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1" name="genre_filter">
-                           <option>Thể loại</option>
-                           @foreach ($genres as $genre_filter)
-                              <option value="{{ $genre_filter->id }}">{{ $genre_filter->title }}</option>
-                           @endforeach
-                        </select>
-                     </div>
-                  </div>
-
-                  <div class="col-md-2">
-                     <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1" name="country_filter">
-                           <option>Quốc gia</option>
-                           @foreach ($countries as $country_filter)
-                              <option value="{{ $country_filter->id }}">{{ $country_filter->title }}</option>
-                           @endforeach
-                        </select>
-                     </div>
-                  </div>
-
-                  <div class="col-md-2">
-                     <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1" name="year">
-                           <option value="">Năm</option>
-                           @for ($i = 2010; $i <= 2024; $i++)
-                              <option value="{{ $i }}">{{ $i }}</option>
-                           @endfor
-                        </select>
-                     </div>
-                  </div>
-
-                  <div>
-                     <input type="submit" class="btn btn-sm btn-defaul" value="Lọc phim">
-                  </div>
-               </form>
-            </div>
-         </div>
+         @include('pages.include.filter');
 
          <div class="halim_box">
             @foreach($movie as $mov)

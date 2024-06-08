@@ -166,7 +166,7 @@ class IndexController extends Controller
             }else{
                 $movie = Movie::orderBy('title', 'ASC')->paginate(40);
             }
-            return view('pages.include.filter', compact('categories', 'genres', 'countries', 'movie', 'movie_hot_sidebar', 'hot_trailer'));
+            return view('pages.filter', compact('categories', 'genres', 'countries', 'movie', 'movie_hot_sidebar', 'hot_trailer'));
         }
     }
 }
