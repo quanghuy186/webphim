@@ -46,3 +46,4 @@ Route::get('test', function(){
 
 
 Route::get('episodes', [EpisodeController::class, 'select_movie'])->name('select-movie');
+Route::get('locphim', [IndexController::class, 'filter'])->name('filter');

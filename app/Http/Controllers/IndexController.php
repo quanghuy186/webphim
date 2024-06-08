@@ -10,6 +10,7 @@ use App\Models\Movie;
 use App\Models\Movie_Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 use function Laravel\Prompts\select;
 
@@ -140,5 +141,32 @@ class IndexController extends Controller
         }
 
         return view('pages.watch', compact('tapphim','genres', 'countries', 'categories', 'movie', 'movie_hot_sidebar', 'hot_trailer', 'episode', 'movie_related'));
+    }
+
+    public function filter(){
+        $order = $_GET['order'];
+        $genre_filter = $_GET['genre_filter'];
+        $country_filter = $_GET['country_filter'];
+        $year_filter = $_GET['year'];
+
+        if($order == " " && $genre_filter == " "&& $country_filter == " "){
+
+        }else{
+            $categories = Category::orderBy('id', 'desc')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
+            $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take(15)->get();
+            $hot_trailer = Movie::where('resolution', 4)->where('status', 1)->orderBy('updated_at', 'DESC')->take(4)->get();
+            $genres = Genre::orderBy('id', 'desc')->get();
+            $countries = Country::orderBy('id', 'desc')->get();
+            if($genre_filter){
+                $movie = Movie::where('genre_id', $genre_filter)->paginate(40);
+            }elseif($country_filter){
+                $movie = Movie::where('country_id', $country_filter)->paginate(40);
+            }elseif($year_filter){
+                $movie = Movie::where('year', $year_filter)->paginate(40);
+            }else{
+                $movie = Movie::orderBy('title', 'ASC')->paginate(40);
+            }
+            return view('pages.include.filter', compact('categories', 'genres', 'countries', 'movie', 'movie_hot_sidebar', 'hot_trailer'));
+        }
     }
 }

@@ -7,7 +7,7 @@
        <div class="panel-heading">
           <div class="row">
              <div class="col-xs-6">
-                <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">{{ $cate_slug->title }}</a> » <span class="breadcrumb_last" aria-current="page">2020</span></span></span></div>
+                <div class="yoast_breadcrumb hidden-xs"><span><span><a href=""></a> » <span class="breadcrumb_last" aria-current="page">2020</span></span></span></div>
              </div>
           </div>
        </div>
@@ -18,7 +18,7 @@
     <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
        <section>
           <div class="section-bar clearfix">
-             <h1 class="section-title"><span>{{ $cate_slug->title }}</span></h1>
+             <h1 class="section-title"><span>Loc phim</span></h1>
           </div>
  
           {{-- filter --}}
@@ -41,7 +41,7 @@
                   <div class="col-md-2">
                      <div class="form-group">
                         <select class="form-control" id="exampleFormControlSelect1" name="genre_filter">
-                           <option>Thể loại</option>
+                            <option value="">Thể loại</option>
                            @foreach ($genres as $genre_filter)
                               <option value="{{ $genre_filter->id }}">{{ $genre_filter->title }}</option>
                            @endforeach
@@ -52,7 +52,7 @@
                   <div class="col-md-2">
                      <div class="form-group">
                         <select class="form-control" id="exampleFormControlSelect1" name="country_filter">
-                           <option>Quốc gia</option>
+                           <option value="">Quốc gia</option>
                            @foreach ($countries as $country_filter)
                               <option value="{{ $country_filter->id }}">{{ $country_filter->title }}</option>
                            @endforeach
@@ -67,10 +67,8 @@
                            @for ($i = 2010; $i <= 2024; $i++)
                               <option value="{{ $i }}">{{ $i }}</option>
                            @endfor
-                        </select>
                      </div>
                   </div>
-
                   <div>
                      <input type="submit" class="btn btn-sm btn-defaul" value="Lọc phim">
                   </div>
