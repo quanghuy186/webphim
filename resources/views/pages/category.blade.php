@@ -23,7 +23,7 @@
  
           {{-- filter --}}
 
-         @include('pages.include.filter');
+         @include('pages.include.filter')
 
          <div class="halim_box">
             @foreach($movie as $mov)

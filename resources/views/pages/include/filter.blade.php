@@ -24,7 +24,11 @@
                 <select class="form-control custom_filter" id="exampleFormControlSelect1" name="genre_filter">
                    <option value="">Thể loại</option>
                    @foreach ($genres as $genre_filter)
-                      <option value="{{ $genre_filter->id }}">{{ $genre_filter->title }}</option>
+                      <option  
+                        @isset($_GET["genre_filter"]) 
+                            {{ $_GET["genre_filter"] == $genre_filter->id ? 'selected' : '' }} 
+                        @endisset
+                       value="{{ $genre_filter->id }}">{{ $genre_filter->title }}</option>
                    @endforeach
                 </select>
              </div>
@@ -34,17 +38,26 @@
                 <select class="form-control custom_filter" id="exampleFormControlSelect1" name="country_filter">
                    <option value="">Quốc gia</option>
                    @foreach ($countries as $country_filter)
-                      <option value="{{ $country_filter->id }}">{{ $country_filter->title }}</option>
+                      <option 
+                        @isset($_GET["country_filter"]) 
+                                {{ $_GET["country_filter"] == $country_filter->id ? 'selected' : '' }} 
+                        @endisset
+                        value="{{ $country_filter->id }}">{{ $country_filter->title }}</option>
                    @endforeach
                 </select>
              </div>
           </div>
+
           <div class="col-md-2">
              <div class="form-group">
                 <select class="form-control custom_filter" id="exampleFormControlSelect1" name="year">
                    <option value="">Năm</option>
                    @for ($i = 2010; $i <= 2024; $i++)
-                      <option value="{{ $i }}">{{ $i }}</option>
+                      <option 
+                        @isset($_GET["year"]) 
+                                {{ $_GET["year"] == $i ? 'selected' : '' }} 
+                        @endisset
+                        value="{{ $i }}">{{ $i }}</option>
                    @endfor
                 </select>
              </div>
