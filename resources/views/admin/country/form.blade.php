@@ -22,16 +22,31 @@
                         <div class="form-group">
                             <label for="title" class="form-lable">Tiêu đề</label>
                             <input onkeyup="ChangeToSlug()" value="{{ isset($countries) ? $countries->title : '' }}" class="form-control" type="text" name="title" id="slug" placeholder="Nhập tiêu đề">
+                            @if ($errors->has('title'))
+                                @error('title')
+                                    <p class="alert alert-danger mt-3">{{ $message }}</p>
+                                @enderror
+                            @endif 
                         </div>
 
                         <div class="form-group">
                             <label for="title" class="form-lable">Slug</label>
                             <input value="{{ isset($categories) ? $categories->slug : '' }}" class="form-control" type="text" name="slug" id="convert_slug" placeholder="Nhập dữ liệu">
+                            @if ($errors->has('slug'))
+                                @error('slug')
+                                    <p class="alert alert-danger mt-3">{{ $message }}</p>
+                                @enderror
+                            @endif 
                         </div>
                         
                         <div class="form-group">
                             <label for="description" class="form-label">Mô tả</label>
                             <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="Nhập mô tả">{{ isset($countries) ? $countries->description : '' }}</textarea>
+                            @if ($errors->has('description'))
+                                @error('description')
+                                    <p class="alert alert-danger mt-3">{{ $message }}</p>
+                                @enderror
+                            @endif 
                         </div>
 
                         <div class="form-group">
@@ -48,6 +63,11 @@
                                 @else
                                     <option value="1">Hiển thị</option>
                                     <option value="0">Đang ẩn</option>
+                                @endif
+                                @if ($errors->has('status'))
+                                    @error('status')
+                                        <p class="alert alert-danger mt-3">{{ $message }}</p>
+                                    @enderror
                                 @endif
                             </select>
                         </div>

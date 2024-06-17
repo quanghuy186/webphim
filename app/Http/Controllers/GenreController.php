@@ -30,7 +30,20 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate([
+            'title' => 'required|unique:genres|max:255',
+            'description' => 'required',
+            'status' => 'required',
+            'slug' => 'required|unique:genres',
+        ],
+        [
+            'title.required' => 'Không được để trống',
+            'title.unique' => 'Tên này đã tồn tại',
+            'description.required' => 'Không được để trống',
+            'status.required' => 'Không được để trống',
+            'slug.required' => 'Không được để trống',
+            ]
+        );
         $genre = new Genre;
         $genre->title = $data['title'];
         $genre->description = $data['description'];
@@ -66,7 +79,20 @@ class GenreController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->all();
+        $data = $request->validate([
+            'title' => 'required|unique:genres|max:255',
+            'description' => 'required',
+            'status' => 'required',
+            'slug' => 'required|unique:genres',
+        ],
+        [
+            'title.required' => 'Không được để trống',
+            'title.unique' => 'Tên này đã tồn tại',
+            'description.required' => 'Không được để trống',
+            'status.required' => 'Không được để trống',
+            'slug.required' => 'Không được để trống',
+            ]
+        );
         $genre = Genre::find($id);
         $genre->title = $data['title'];
         $genre->description = $data['description'];

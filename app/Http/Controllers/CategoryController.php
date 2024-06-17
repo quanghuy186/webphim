@@ -28,7 +28,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        // $data = $request->all();
+        $data = $request->validate([
+            'title' => 'required|unique:categories|max:255',
+            'description' => 'required',
+            'status' => 'required',
+            'slug' => 'required|unique:categories',
+
+        ],
+        [
+            'title.required' => 'Không được để trống',
+            'description.required' => 'Không được để trống',
+            'title.unique' => 'Tên này đã tồn tại',
+            'status.required' => 'Không được để trống',
+            'slug.required' => 'Không được để trống',
+        ]
+    );
         $category = new Category;
         $category->title = $data['title'];
         $category->description = $data['description'];
@@ -61,7 +76,21 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->all();
+        $data = $request->validate([
+            'title' => 'required|unique:categories|max:255',
+            'description' => 'required',
+            'status' => 'required',
+            'slug' => 'required|unique:categories',
+
+        ],
+        [
+            'title.required' => 'Không được để trống',
+            'title.unique' => 'Tên này đã tồn tại',
+            'description.required' => 'Không được để trống',
+            'status.required' => 'Không được để trống',
+            'slug.required' => 'Không được để trống',
+            ]
+        );
         $category = Category::find($id);
         $category->title = $data['title'];
         $category->description = $data['description'];
