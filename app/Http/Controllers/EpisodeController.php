@@ -39,13 +39,15 @@ class EpisodeController extends Controller
         $episode = new Episode();
         $check_episode = Episode::where('movie_id', $data['movie_id'])->where('episode', $data['episode'])->count();
         if($check_episode > 0){
-            alert('Thêm không thành công do đã tồn tại tập phim này');
+            toastr()->error('Đã tồn tại tập phim này');
             return redirect()->back();
         }else{
             $episode->movie_id = $data['movie_id'];
             $episode->episode = $data['episode'];
             $episode->linkphim = $data['linkphim'];
-            $episode->save();
+            if($episode->save()){
+                toastr()->success('Thành công');
+            }
         }
         
         return redirect()->back();
@@ -86,7 +88,9 @@ class EpisodeController extends Controller
         $episode->movie_id = $data['movie_id'];
         $episode->episode = $data['episode'];
         $episode->linkphim = $data['linkphim'];
-        $episode->save();
+        if($episode->save()){
+            toastr()->success('Thành công');
+        }
         return redirect()->route('episode.index');
     }
 
@@ -96,7 +100,9 @@ class EpisodeController extends Controller
     public function destroy(string $id)
     {
         $episode = Episode::find($id);
-        $episode->delete();
+        if( $episode->delete()){
+            toastr()->success('Thành công');
+        }
         return redirect()->route('episode.index');
     }
 

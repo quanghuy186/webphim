@@ -37,8 +37,10 @@ class GenreController extends Controller
         $genre->status = $data['status'];
         $genre->slug = $data['slug'];
 
-        $genre->save();
-        return redirect()->back();
+        if($genre->save()){
+            toastr()->success('Data has been saved successfully!');
+        }
+        return redirect()->route('genre.index');
     }
 
     /**
@@ -71,7 +73,7 @@ class GenreController extends Controller
         $genre->status = $data['status'];
         $genre->slug = $data['slug'];
         $genre->update();
-        return redirect()->back();
+        return redirect()->back()->with('success', "Sửa thành công");
     }
 
     /**
@@ -79,7 +81,9 @@ class GenreController extends Controller
      */
     public function destroy(string $id)
     {
-        Genre::find($id)->delete();
-        return redirect()->back();
+        if(Genre::find($id)->delete()){
+            toastr()->success('Deleted successfully');
+        }
+        return redirect()->route('genre.index');
     }
 }

@@ -32,7 +32,9 @@ class MovieController extends Controller
         $data = $request->all();
         $movie = Movie::find($data['id_phim']);
         $movie->year = $data['year'];
-        $movie->save();
+        if($movie->save()){
+            toastr()->success('Cập nhật thành công');
+        }
     }
 
     public function update_season(Request $request){
@@ -176,7 +178,9 @@ class MovieController extends Controller
         $movie->save();
 
         //atrach có chức năng đính kèm dữ liệu
-        $movie->movie_genre()->attach($data['genre']);
+        if($movie->movie_genre()->attach($data['genre'])){
+            toastr()->success('Thêm mới thành công');
+        }
         return redirect()->back();
     }
 
@@ -241,7 +245,9 @@ class MovieController extends Controller
             }
         }
         $movie->save();
-        $movie->movie_genre()->sync($data['genre']);
+        if($movie->movie_genre()->attach($data['genre'])){
+            toastr()->success('Cập nhật mới thành công');
+        }
         return redirect()->back();
     }
 
@@ -257,7 +263,9 @@ class MovieController extends Controller
         //xoa nhieu the loai
         Movie_Genre::whereIn('movie_id', [$movie->id])->delete();
         Episode::whereIn('movie_id', [$movie->id])->delete();
-        $movie->delete();
+        if ($movie->delete()){
+            toastr()->success('Xóa thành công');
+        }
         return redirect()->back();
     }
 }

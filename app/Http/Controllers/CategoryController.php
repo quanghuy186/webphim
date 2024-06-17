@@ -35,7 +35,7 @@ class CategoryController extends Controller
         $category->status = $data['status'];
         $category->slug = $data['slug'];
         $category->save();
-        return redirect()->back();
+        return redirect()->route('category.create')->with('success', "Thêm mới thành công");
     }
 
     /**
@@ -77,7 +77,7 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         Category::find($id)->delete();
-        return redirect()->back();
+        return redirect()->route('category.create')->with('success', "Xóa thành công");
     }
 
     public function resorting(Request $request){
